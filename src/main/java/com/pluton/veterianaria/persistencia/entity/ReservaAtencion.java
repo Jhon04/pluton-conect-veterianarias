@@ -1,5 +1,10 @@
 package com.pluton.veterianaria.persistencia.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
+import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,10 +38,12 @@ public class ReservaAtencion implements Serializable {
         this.idCliente = idCliente;
     }
 
+    @JsonSerialize(using = CustomJsonDateSerializer.class)
     public Date getFecha() {
         return fecha;
     }
 
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
