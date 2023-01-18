@@ -1,14 +1,30 @@
 package com.pluton.veterianaria.persistencia.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "cliente")
 public class Cliente implements Serializable {
+
+    /*
+    * @Temporal(TemporalType.TIMESTAMP)
+	* @Column(name = "fecha_creacion")
+	* private Date fechaCreacion;
+    * */
 
     private static final long serialVersionUID = 8799656478674716638L;
 
-    private int idCliente;
-    private int idUsuario;
-    private int idDistrito;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
+    private Integer idCliente;
+
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
+
+    @Column(name = "id_distrito")
+    private Integer idDistrito;
     private String email;
     private String nombre;
     private String apellido;
@@ -20,9 +36,6 @@ public class Cliente implements Serializable {
     private boolean estado;
     private String fechMod;
     private String userMod;
-
-    public Cliente() {
-    }
 
     public int getIdCliente() {
         return idCliente;
