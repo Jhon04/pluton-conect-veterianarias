@@ -1,0 +1,6 @@
+#cambiar de servidor
+#server.port=8080
+
+spring.datasource.url=jdbc:mysql://localhost:3306/pluton?serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=alumno
