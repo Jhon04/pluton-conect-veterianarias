@@ -1,4 +1,4 @@
-package com.pluton.veterianaria;
+package com.pluton.veterianaria.persistencia.entity;
 
 import java.io.Serializable;
 
