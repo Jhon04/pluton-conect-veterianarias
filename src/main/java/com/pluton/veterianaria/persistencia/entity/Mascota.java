@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Mascota implements Serializable {
 
-    private static final long serialVersionUID = 8799656478674716638L;
+    private static final long serialVersionUID = 1L;
 
     private int idMascota;
     private int idTipoMascota;
