@@ -150,7 +150,7 @@ CREATE TABLE MASCOTA (
     nombre_mascota varchar(255) NOT NULL,
     edad_mascota INT NOT NULL,
     peso_mascota decimal(3.3) NOT NULL,
-    tamaño_mascota decimal(3.3) NOT NULL
+    size_mascota decimal(3.3) NOT NULL
 );
 
 CREATE TABLE RESERVA_ATENCION (
@@ -159,7 +159,7 @@ CREATE TABLE RESERVA_ATENCION (
     fecha_cita DATE NOT NULL,
     hora_ini_cita DATETIME NOT NULL,
     hora_fin_cita DATETIME NOT NULL,
-    estado_reserva_atencion VARCHAR(255) NOT NULL
+    estado_reserva_atencion boolean NOT NULL
 );
 
 CREATE TABLE TIPO_USUARIO (
@@ -263,10 +263,6 @@ ALTER TABLE DET_CLIENTE_MASCOTA
 ADD CONSTRAINT FK_DET_CLIENTE_MASCOTA_MASCOTA
 FOREIGN KEY (id_mascota) REFERENCES MASCOTA (id_mascota);
 
-ALTER TABLE direcciones
-ADD FOREIGN KEY (id_cliente)
-REFERENCES clientes(id_cliente);
-
 ALTER TABLE DET_CLIENTE_MASCOTA
 ADD CONSTRAINT FK_DET_CLIENTE_MASCOTA_CLIENTE
 FOREIGN KEY (id_cliente) REFERENCES CLIENTE (id_cliente);
@@ -274,4 +270,3 @@ FOREIGN KEY (id_cliente) REFERENCES CLIENTE (id_cliente);
 ALTER TABLE RESERVA_ATENCION
 ADD CONSTRAINT FK_RESERVA_ATENCION_CLIENTE
 FOREIGN KEY (id_cliente) REFERENCES CLIENTE (id_cliente);
-
