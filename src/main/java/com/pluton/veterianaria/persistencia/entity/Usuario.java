@@ -1,10 +1,11 @@
 package com.pluton.veterianaria.persistencia.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,6 +25,9 @@ public class Usuario {
 
     @Column(name = "password_usu")
     private String password_usu;
+
+    public Usuario() {
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;

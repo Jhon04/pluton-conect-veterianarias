@@ -62,6 +62,9 @@ public class Cliente implements Serializable {
     @Column(name = "user_mod")
     private String userMod;
 
+    public Cliente() {
+    }
+
     public Integer getIdCliente() {
         return idCliente;
     }

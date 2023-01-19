@@ -1,10 +1,11 @@
 package com.pluton.veterianaria.persistencia.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "distrito")
-public class Distrito {
+public class Distrito implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,6 +22,9 @@ public class Distrito {
 
     @Column(name = "nombre_distrito")
     private String nombreDistrito;
+
+    private Distrito() {
+    }
 
     public Integer getIdDistrito() {
         return idDistrito;
