@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class ReservaAtencion implements Serializable {
 
-    private static final long serialVersionUID = 8799656478674716638L;
+    private static final long serialVersionUID = 1L;
 
     private int IdReservaAtencion;
     private int idCliente;

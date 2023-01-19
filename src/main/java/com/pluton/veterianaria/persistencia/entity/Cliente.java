@@ -13,7 +13,7 @@ public class Cliente implements Serializable {
 	* private Date fechaCreacion;
     * */
 
-    private static final long serialVersionUID = 8799656478674716638L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
