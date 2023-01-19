@@ -13,11 +13,14 @@ public class Provincia implements Serializable {
     @Column(name = "id_provincia")
     private Integer idProvincia;
 
-    @Column(name = "id_departamento")
-    private Integer idDepartamento;
+    // (Many) Un *Departamento puede tener muchas *Provincias
+    // (One) Una *Provincia solo puede pertenecer a un *Departamento
+    @ManyToOne
+    @JoinColumn(name = "id_departamento", insertable = false, updatable = false)
+    private Departamento departamento;
 
     @Column(name = "nombre_provincia")
-    private String nombre_provincia;
+    private String nombreProvincia;
 
     public Provincia() {
     }
@@ -30,19 +33,19 @@ public class Provincia implements Serializable {
         this.idProvincia = idProvincia;
     }
 
-    public Integer getIdDepartamento() {
-        return idDepartamento;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setIdDepartamento(Integer idDepartamento) {
-        this.idDepartamento = idDepartamento;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
-    public String getNombre_provincia() {
-        return nombre_provincia;
+    public String getNombreProvincia() {
+        return nombreProvincia;
     }
 
-    public void setNombre_provincia(String nombre_provincia) {
-        this.nombre_provincia = nombre_provincia;
+    public void setNombreProvincia(String nombreProvincia) {
+        this.nombreProvincia = nombreProvincia;
     }
 }

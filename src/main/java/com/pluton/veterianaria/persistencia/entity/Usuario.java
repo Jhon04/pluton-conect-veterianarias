@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "usuario")
 public class Usuario {
 
-    private static final long serialVersionUID = 8799656478674716638L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
