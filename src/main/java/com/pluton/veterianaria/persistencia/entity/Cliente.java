@@ -1,17 +1,17 @@
 package com.pluton.veterianaria.persistencia.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
+import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
-
-    /*
-    * @Temporal(TemporalType.TIMESTAMP)
-	* @Column(name = "fecha_creacion")
-	* private Date fechaCreacion;
-    * */
 
     private static final long serialVersionUID = 8799656478674716638L;
 
@@ -20,44 +20,61 @@ public class Cliente implements Serializable {
     @Column(name = "id_cliente")
     private Integer idCliente;
 
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    // (One) Un *Usuario solo lo puede tener un *Cliente
+    // (One) Un *Cliente solo puede tener un *Usuario
+    @OneToOne
+    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    private Usuario usuario;
 
     @Column(name = "id_distrito")
     private Integer idDistrito;
+
+    @Column(name = "email_cli")
     private String email;
+
+    @Column(name = "nombre_cli")
     private String nombre;
+
+    @Column(name = "apellido_cli")
     private String apellido;
+
+    @Column(name = "celular_cli")
     private String celular;
+
+    @Column(name = "img_back_cli")
     private String imgBack;
+
+    @Column(name = "img_back_cli")
     private String img;
+
+    @Column(name = "direccion_cli")
     private String direccion;
+
+    @Column(name = "ubicacion_cli")
     private String ubicacion;
+
+    @Column(name = "estado_cli")
     private boolean estado;
-    private String fechMod;
+
+    @Column(name = "fecha_mod_cli")
+    private Date fechMod;
+
+    @Column(name = "user_mod")
     private String userMod;
 
-    public int getIdCliente() {
+    public Integer getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public int getIdDistrito() {
+    public Integer getIdDistrito() {
         return idDistrito;
     }
 
-    public void setIdDistrito(int idDistrito) {
+    public void setIdDistrito(Integer idDistrito) {
         this.idDistrito = idDistrito;
     }
 
@@ -125,7 +142,7 @@ public class Cliente implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
@@ -133,11 +150,13 @@ public class Cliente implements Serializable {
         this.estado = estado;
     }
 
-    public String getFechMod() {
+    @JsonSerialize(using = CustomJsonDateSerializer.class)
+    public Date getFechMod() {
         return fechMod;
     }
 
-    public void setFechMod(String fechMod) {
+    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
+    public void setFechMod(Date fechMod) {
         this.fechMod = fechMod;
     }
 
@@ -147,5 +166,13 @@ public class Cliente implements Serializable {
 
     public void setUserMod(String userMod) {
         this.userMod = userMod;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
