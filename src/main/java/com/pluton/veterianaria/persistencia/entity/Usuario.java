@@ -14,7 +14,7 @@ public class Usuario implements Serializable {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(name = "id_tipo_usu")
+    @Column(name = "id_tipo_usuario")
     private Integer idTipoUsuario;
 
     @Column(name = "email_usu")
@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
     // (Many) Un *Tipo_de_usuario puede tener multiples usuario
     // (One) Un *Usuario solo puede tener un tipo de usuario
     @ManyToOne
-    @JoinColumn(name = "id_tipo_usu", insertable = false, updatable = false)
+    @JoinColumn(name = "id_tipo_usuario", insertable = false, updatable = false)
     private TipoUsuario tipoUsuario;
 
     public Usuario() {

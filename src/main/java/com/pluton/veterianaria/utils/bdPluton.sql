@@ -1,3 +1,8 @@
+/*
+drop database pluton;
+create database pluton;
+*/
+
 create database pluton;
 /*---------------------------*/
 /*    TABLAS @ChugnasIvan    */
@@ -238,7 +243,7 @@ FOREIGN KEY (id_distrito) REFERENCES DISTRITO (id_distrito);
 /*----------------------------------*/
 ALTER TABLE USUARIO
 ADD CONSTRAINT FK_USUARIO_TIPO_USUARIO
-FOREIGN KEY (id_tipo_usu) REFERENCES TIPO_USUARIO(id_tipo_usu);
+FOREIGN KEY (id_tipo_usuario) REFERENCES TIPO_USUARIO(id_tipo_usuario);
 
 ALTER TABLE SERVICIO
 ADD CONSTRAINT FK_SERVICIO_TIPO_EMPRESA
