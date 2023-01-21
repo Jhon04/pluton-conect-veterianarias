@@ -13,7 +13,7 @@ public class Departamento implements Serializable {
     @Column(name = "id_departamento")
     private Integer idDepartamento;
 
-    @Column(name = "nombre_departamento")
+    @Column(name = "nombre_dep")
     private String nombreDepartamento;
 
     public Departamento() {

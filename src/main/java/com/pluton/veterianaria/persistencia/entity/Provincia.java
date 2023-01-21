@@ -16,7 +16,7 @@ public class Provincia implements Serializable {
     @Column(name = "id_departamento")
     private Integer idDepartamento;
 
-    @Column(name = "provincia")
+    @Column(name = "nombre_pro")
     private String nombreProvincia;
 
     // (Many) Un *Departamento puede tener muchas *Provincias

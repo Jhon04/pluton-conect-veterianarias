@@ -12,7 +12,7 @@ public class TipoUsuario {
     @Column(name = "id_tipo_usuario")
     private Integer idTipoUsuario;
 
-    @Column(name = "nombre_tipo_usu")
+    @Column(name = "nombre_tip_usu")
     private String nombreTipoUsu;
 
     private Boolean estado;

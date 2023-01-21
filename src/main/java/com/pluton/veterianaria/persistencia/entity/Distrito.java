@@ -17,7 +17,7 @@ public class Distrito implements Serializable {
     @Column(name = "id_provincia")
     private Integer idProvincia;
 
-    @Column(name = "nombre_distrito")
+    @Column(name = "nombre_dis")
     private String nombreDistrito;
 
     // (Many) Una *Provincia puede tener muchos *Distrito
