@@ -8,42 +8,46 @@ CREATE TABLE CLIENTE (
     id_distrito INT NOT NULL,
     direccion_cli VARCHAR(255) NOT NULL,
 	nombre_cli VARCHAR(255) NOT NULL,
-    apellido_cli VARCHAR(255) NOT NULL,
+	ape_paterno_cli VARCHAR(100) NOT NULL,
+    ape_materno_cli VARCHAR(100) NOT NULL,
     ubicacion_cli VARCHAR(255) NOT NULL,
     email_cli VARCHAR(255) NOT NULL,
     celular_cli CHAR(9),
-	estado_cli BOOLEAN NOT NULL,
-    img_cli VARCHAR(255) NOT NULL,
+	img_cli VARCHAR(255) NOT NULL,
     img_back_cli VARCHAR(255) NOT NULL,
+
+	estado BOOLEAN NOT NULL,
 	fecha_mod_cli DATE,
 	user_mod INT
 );
 
 CREATE TABLE COMENTARIO (
-id_comentario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-id_cliente INT NOT NULL,
+    id_comentario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_cliente INT NOT NULL,
 
-titulo_com varchar(120) NOT NULL,
-comentario TEXT NOT NULL,
-fecha_com DATE NOT NULL,
-calificacion CHAR(1) NOT NULL
+    titulo_com varchar(120) NOT NULL,
+    comentario TEXT NOT NULL,
+    fecha_com DATE NOT NULL,
+    calificacion_com CHAR(1) NOT NULL,
+
+    estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE DEPARTAMENTO(
     id_departamento INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nombre_departamento VARCHAR(255) NOT NULL
+    nombre_dep VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE PROVINCIA (
 	id_provincia INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
     id_departamento INT NOT NULL,
-    nombre_provincia VARCHAR(30) NOT NULL
+    nombre_pro VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE DISTRITO (
 	id_distrito INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 	id_provincia INT NOT NULL,
-    nombre_distrito VARCHAR(15) NOT NULL
+    nombre_dis VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE DET_EMPRESA_COMENTARIO (
@@ -59,18 +63,19 @@ CREATE TABLE EMPRESA (
     nombre_emp VARCHAR(255) NOT NULL,
     descripcion_emp TEXT NOT NULL,
     email_emp VARCHAR(255),
-    calificacion_emp CHAR(1) NOT NULL,
+    celular_emp CHAR(9),
+
     img_back_emp VARCHAR(255),
     img_emp VARCHAR(255) NOT NULL,
-    celular_emp CHAR(9),
 
     direccion_emp VARCHAR(255) NOT NULL,
     ubicacion_emp VARCHAR(255) NOT NULL,
 
-    verificacion_emp BOOLEAN,
-    estado_emp CHAR(1),
+    calificacion_emp CHAR(1) NOT NULL,
+    verificacion_emp BOOLEAN NOT NULL,
 
-    fecha_mod_emp DATE,
+    estado BOOLEAN NOT NULL,
+    fecha_mod DATE,
     user_mod INT
 );
 
@@ -80,19 +85,22 @@ CREATE TABLE EMPRESA (
 /*---------------------------*/
 CREATE TABLE USUARIO (
 	id_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	id_tipo_usu INT NOT NULL,
+	id_tipo_usuario INT NOT NULL,
 	email_usu VARCHAR(255) NOT NULL,
-	password_usu VARCHAR(32) NOT NULL
+	password_usu VARCHAR(32) NOT NULL,
+
+	estado BOOLEAN NOT NULL
 );
 
-CREATE TABLE DET_RESERVA_SERVICIO (
-	id_det_reserva_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	id_cita_reserva_atencion INT NOT NULL,
-	id_servicio INT NOT NULL
+CREATE TABLE TIPO_USUARIO (
+    id_tipo_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre_tip_usu VARCHAR(255) NOT NULL,
+
+    estado BOOLEAN NOT NULL
 );
 
-CREATE TABLE HISTORIAL_CLINICO(
-	id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT ,
+CREATE TABLE HISTORIAL_CLINICO (
+	id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_servicio INT NOT NULL,
 	observacion_historial VARCHAR(255) NOT NULL,
 	fecha_atencion DATE
@@ -103,16 +111,26 @@ CREATE TABLE SERVICIO (
 	id_empresa INT NOT NULL,
 	id_tipo_servicio INT NOT NULL,
 	id_calendario INT NOT NULL,
-	nombre_serv VARCHAR(255) NOT NULL,
-	descripcion_serv VARCHAR(255) NOT NULL,
-	icon_serv VARCHAR(50) NOT NULL,
-	duracion_serv VARCHAR(10) NOT NULL,
-	precio_serv DECIMAL(6,2) NOT NULL
+	nombre_ser VARCHAR(255) NOT NULL,
+	descripcion_ser VARCHAR(255) NOT NULL,
+	icon_ser VARCHAR(50) NOT NULL,
+	duracion_ser VARCHAR(10) NOT NULL,
+	precio_ser DECIMAL(6,2) NOT NULL,
+
+	estado BOOLEAN NOT NULL
+);
+
+CREATE TABLE DET_RESERVA_SERVICIO (
+	id_det_reserva_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_cita_reserva_atencion INT NOT NULL,
+	id_servicio INT NOT NULL
 );
 
 CREATE TABLE TIPO_SERVICIO (
 	id_tipo_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
-	nombre_tipo_serv VARCHAR(255) NOT NULL
+	nombre_tip_serv VARCHAR(255) NOT NULL,
+
+	estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE CALENDARIO_SERVICIO (
@@ -126,45 +144,48 @@ CREATE TABLE CALENDARIO_SERVICIO (
 	hora_ini CHAR(4) NOT NULL,
 	hora_fin CHAR(4) NOT NULL,
 	dias_semana_no_laborable_ini CHAR(2) NOT NULL,
-	dias_semana_no_laborable_fin CHAR(2) NOT NULL
+	dias_semana_no_laborable_fin CHAR(2) NOT NULL,
+
+	estado BOOLEAN NOT NULL
 );
 
 /*---------------------------*/
 /*  TABLAS @RomarioDaSilva   */
 /*---------------------------*/
+CREATE TABLE MASCOTA (
+    id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_tipo_mascota INT NOT NULL,
+    nombre_mas varchar(255) NOT NULL,
+    edad_mas INT NOT NULL,
+    peso_mas decimal(3.3) NOT NULL,
+    size_mas decimal(3.3) NOT NULL,
 
-CREATE TABLE RAZA (
-    id_raza INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom_raza VARCHAR(255) NOT NULL
+    estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE TIPO_MASCOTA (
     id_tipo_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_raza INT NOT NULL,
-    nombre_tipo_mascota VARCHAR(255) NOT NULL
+    nombre_tip_mas VARCHAR(255) NOT NULL,
+
+    estado BOOLEAN NOT NULL
 );
 
-CREATE TABLE MASCOTA (
-    id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    id_tipo_mascota INT NOT NULL,
-    nombre_mascota varchar(255) NOT NULL,
-    edad_mascota INT NOT NULL,
-    peso_mascota decimal(3.3) NOT NULL,
-    size_mascota decimal(3.3) NOT NULL
+CREATE TABLE RAZA (
+    id_raza INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nombre_raz VARCHAR(255) NOT NULL,
+
+    estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE RESERVA_ATENCION (
     id_cita_reserva_atencion INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_cliente INT NOT NULL,
-    fecha_cita DATE NOT NULL,
-    hora_ini_cita DATETIME NOT NULL,
-    hora_fin_cita DATETIME NOT NULL,
-    estado_reserva_atencion boolean NOT NULL
-);
+    fecha_cit DATE NOT NULL,
+    hora_ini_cit DATETIME NOT NULL,
+    hora_fin_cit DATETIME NOT NULL,
 
-CREATE TABLE TIPO_USUARIO (
-    id_tipo_usu INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nombre_tipo_usu VARCHAR(255) NOT NULL
+    estado BOOLEAN NOT NULL
 );
 
 CREATE TABLE DET_CLIENTE_MASCOTA (
@@ -176,7 +197,6 @@ CREATE TABLE DET_CLIENTE_MASCOTA (
 /*----------------------------------*/
 /*RELACIONES DE TABLAS @ChugnasIvan */
 /*----------------------------------*/
-
 ALTER TABLE CLIENTE
 ADD CONSTRAINT FK_CLIENTE_DISTRITO
 FOREIGN KEY (id_distrito) REFERENCES DISTRITO (id_distrito);

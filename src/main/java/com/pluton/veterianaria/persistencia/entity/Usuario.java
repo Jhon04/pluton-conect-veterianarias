@@ -14,17 +14,20 @@ public class Usuario implements Serializable {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    // (Many) Un *Tipo_de_usuario puede tener multiples usuario
-    // (One) Un *Usuario solo puede tener un tipo de usuario
-    @ManyToOne
-    @JoinColumn(name = "id_tipo_usuario", insertable = false, updatable = false)
-    private TipoUsuario tipoUsuario;
+    @Column(name = "id_tipo_usu")
+    private Integer idTipoUsuario;
 
     @Column(name = "email_usu")
     private String emailUsu;
 
     @Column(name = "password_usu")
     private String password_usu;
+
+    // (Many) Un *Tipo_de_usuario puede tener multiples usuario
+    // (One) Un *Usuario solo puede tener un tipo de usuario
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_usu", insertable = false, updatable = false)
+    private TipoUsuario tipoUsuario;
 
     public Usuario() {
     }
@@ -59,5 +62,13 @@ public class Usuario implements Serializable {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public Integer getIdTipoUsuario() {
+        return idTipoUsuario;
+    }
+
+    public void setIdTipoUsuario(Integer idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
     }
 }

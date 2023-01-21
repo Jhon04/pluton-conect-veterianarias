@@ -14,17 +14,12 @@ import java.util.Date;
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private Integer idCliente;
-
-    // (One) Un *Usuario solo lo puede tener un *Cliente
-    // (One) Un *Cliente solo puede tener un *Usuario
-    @OneToOne
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
-    private Usuario usuario;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
     @Column(name = "id_distrito")
     private Integer idDistrito;
@@ -44,7 +39,7 @@ public class Cliente implements Serializable {
     @Column(name = "img_back_cli")
     private String imgBack;
 
-    @Column(name = "img_back_cli")
+    @Column(name = "img_cli")
     private String img;
 
     @Column(name = "direccion_cli")
@@ -54,13 +49,25 @@ public class Cliente implements Serializable {
     private String ubicacion;
 
     @Column(name = "estado_cli")
-    private boolean estado;
+    private Boolean estado;
 
     @Column(name = "fecha_mod_cli")
     private Date fechMod;
 
     @Column(name = "user_mod")
     private String userMod;
+
+    // (One) Un *Usuario solo lo puede tener un *Cliente
+    // (One) Un *Cliente solo puede tener un *Usuario
+    @OneToOne
+    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+    private Usuario usuario;
+
+    // (Many) En un *Distrito pueden vivir varios *Clientes
+    // (One) Un *Cliente solo puede tener un *Usuario
+    @ManyToOne
+    @JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+    private Distrito distrito;
 
     public Cliente() {
     }
@@ -177,5 +184,21 @@ public class Cliente implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Integer getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Distrito getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
     }
 }

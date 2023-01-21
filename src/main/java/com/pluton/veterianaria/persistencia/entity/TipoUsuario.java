@@ -9,11 +9,14 @@ public class TipoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_usuario")
+    @Column(name = "id_tipo_usu")
     private Integer idTipoUsuario;
 
     @Column(name = "nombre_tipo_usu")
     private String nombreTipoUsu;
+
+    public TipoUsuario() {
+    }
 
     public Integer getIdTipoUsuario() {
         return idTipoUsuario;
