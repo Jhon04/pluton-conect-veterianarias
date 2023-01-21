@@ -10,9 +10,11 @@ public class Mascota implements Serializable {
     private int idTipoMascota;
 
     private String nombre;
-    private String edad;
-    private String peso;
-    private String tamaño;
+    private Integer edad;
+    private Double peso;
+    private Double size;
+
+    private Boolean estado;
 
     public Mascota() {
     }
@@ -41,27 +43,35 @@ public class Mascota implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
-    public String getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(String peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
-    public String getTamaño() {
-        return tamaño;
+    public Double getSize() {
+        return size;
     }
 
-    public void setTamaño(String tamaño) {
-        this.tamaño = tamaño;
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }

@@ -30,8 +30,11 @@ public class Cliente implements Serializable {
     @Column(name = "nombre_cli")
     private String nombre;
 
-    @Column(name = "apellido_cli")
-    private String apellido;
+    @Column(name = "ape_paterno_cli")
+    private String apePaterno;
+
+    @Column(name = "ape_materno_cli")
+    private String apeMaterno;
 
     @Column(name = "celular_cli")
     private String celular;
@@ -48,14 +51,14 @@ public class Cliente implements Serializable {
     @Column(name = "ubicacion_cli")
     private String ubicacion;
 
-    @Column(name = "estado_cli")
+    @Column(name = "estado")
     private Boolean estado;
 
-    @Column(name = "fecha_mod_cli")
+    @Column(name = "fecha_mod")
     private Date fechMod;
 
     @Column(name = "user_mod")
-    private String userMod;
+    private Integer userMod;
 
     // (One) Un *Usuario solo lo puede tener un *Cliente
     // (One) Un *Cliente solo puede tener un *Usuario
@@ -102,14 +105,6 @@ public class Cliente implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getCelular() {
@@ -170,11 +165,11 @@ public class Cliente implements Serializable {
         this.fechMod = fechMod;
     }
 
-    public String getUserMod() {
+    public Integer getUserMod() {
         return userMod;
     }
 
-    public void setUserMod(String userMod) {
+    public void setUserMod(Integer userMod) {
         this.userMod = userMod;
     }
 
@@ -200,5 +195,29 @@ public class Cliente implements Serializable {
 
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
+    }
+
+    public String getApePaterno() {
+        return apePaterno;
+    }
+
+    public void setApePaterno(String apePaterno) {
+        this.apePaterno = apePaterno;
+    }
+
+    public String getApeMaterno() {
+        return apeMaterno;
+    }
+
+    public void setApeMaterno(String apeMaterno) {
+        this.apeMaterno = apeMaterno;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }

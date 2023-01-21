@@ -22,7 +22,7 @@ CREATE TABLE CLIENTE (
     img_back_cli VARCHAR(255) NOT NULL,
 
 	estado BOOLEAN NOT NULL,
-	fecha_mod_cli DATE,
+	fecha_mod DATE,
 	user_mod INT
 );
 

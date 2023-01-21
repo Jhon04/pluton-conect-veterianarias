@@ -9,11 +9,13 @@ public class TipoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_usu")
+    @Column(name = "id_tipo_usuario")
     private Integer idTipoUsuario;
 
     @Column(name = "nombre_tipo_usu")
     private String nombreTipoUsu;
+
+    private Boolean estado;
 
     public TipoUsuario() {
     }
@@ -32,5 +34,13 @@ public class TipoUsuario {
 
     public void setNombreTipoUsu(String nombreTipoUsu) {
         this.nombreTipoUsu = nombreTipoUsu;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 }

@@ -18,10 +18,10 @@ public class Usuario implements Serializable {
     private Integer idTipoUsuario;
 
     @Column(name = "email_usu")
-    private String emailUsu;
+    private String email;
 
     @Column(name = "password_usu")
-    private String password_usu;
+    private String password;
 
     // (Many) Un *Tipo_de_usuario puede tener multiples usuario
     // (One) Un *Usuario solo puede tener un tipo de usuario
@@ -40,20 +40,20 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getEmailUsu() {
-        return emailUsu;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailUsu(String emailUsu) {
-        this.emailUsu = emailUsu;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassword_usu() {
-        return password_usu;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassword_usu(String password_usu) {
-        this.password_usu = password_usu;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public TipoUsuario getTipoUsuario() {
