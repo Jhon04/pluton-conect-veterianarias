@@ -3,6 +3,10 @@ package com.pluton.veterianaria.domain;
 public class ClientDomain {
 
     private int clientId;
+
+    private int districtId;
+
+    private int userId;
     private String name;
 
     private String cellPhone;
@@ -17,6 +21,22 @@ public class ClientDomain {
 
     public void setClientId(int clientId) {
         this.clientId = clientId;
+    }
+
+    public int getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(int districtId) {
+        this.districtId = districtId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -43,11 +63,11 @@ public class ClientDomain {
         this.address = address;
     }
 
-    public DistrictDomain getDistrict() {
+    public DistrictDomain getDistrictDomain() {
         return districtDomain;
     }
 
-    public void setDistrict(DistrictDomain districtDomain) {
+    public void setDistrictDomain(DistrictDomain districtDomain) {
         this.districtDomain = districtDomain;
     }
 }

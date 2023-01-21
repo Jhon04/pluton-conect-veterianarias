@@ -14,18 +14,18 @@ public interface ClientMapper {
 
     @Mappings({
             @Mapping(source = "idCliente", target = "clientId"),
+            @Mapping(source = "idDistrito", target = "districtId"),
+            @Mapping(source = "idUsuario", target = "userId"),
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "celular", target = "cellPhone"),
             @Mapping(source = "direccion", target = "address"),
-            @Mapping(source = "distrito", target = "district")
+            @Mapping(source = "distrito", target = "districtDomain")
     })
     ClientDomain toClient(Cliente cliente);
     List<ClientDomain> toClients(List<Cliente> clientes);
 
     @InheritInverseConfiguration
     @Mappings({
-            @Mapping(target = "idUsuario", ignore = true),
-            @Mapping(target = "idDistrito", ignore = true),
             @Mapping(target = "email", ignore = true),
             @Mapping(target = "apePaterno", ignore = true),
             @Mapping(target = "apeMaterno", ignore = true),

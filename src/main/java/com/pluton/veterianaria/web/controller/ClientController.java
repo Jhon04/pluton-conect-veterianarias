@@ -3,10 +3,7 @@ package com.pluton.veterianaria.web.controller;
 import com.pluton.veterianaria.domain.ClientDomain;
 import com.pluton.veterianaria.domain.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,15 +24,18 @@ public class ClientController {
         return clientService.getClient(clientId);
     }
 
-    public  Optional<List<ClientDomain>> getByDistrito(int ditrictId) {
+    @GetMapping("/district/{distritoId}")
+    public  Optional<List<ClientDomain>> getByDistrito(@PathVariable("distritoId") int ditrictId) {
         return clientService.getByDistrito(ditrictId);
     }
 
-    public ClientDomain save(ClientDomain client){
+    @PostMapping("/save")
+    public ClientDomain save(@RequestBody ClientDomain client){
         return clientService.save(client);
     }
 
-    public boolean delete(int clientId){
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable("id}") int clientId){
         return clientService.delete(clientId);
     }
 }
