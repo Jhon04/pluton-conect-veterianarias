@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.persistencia;
 
-import com.pluton.veterianaria.domain.ClientDomain;
+import com.pluton.veterianaria.domain.ClientPojo;
 import com.pluton.veterianaria.domain.repository.ClientRepositoryDomain;
 import com.pluton.veterianaria.persistencia.crud.ClienteCrudRepository;
 import com.pluton.veterianaria.persistencia.entity.Cliente;
@@ -20,25 +20,25 @@ public class ClienteRepository implements ClientRepositoryDomain {
     private ClientMapper clientMapper;
 
     @Override
-    public List<ClientDomain> getAll() {
+    public List<ClientPojo> getAll() {
         List<Cliente> clientes = (List<Cliente>) clienteCrudRepository.findAll();
         return  clientMapper.toClients(clientes);
     }
 
     @Override
-    public Optional<List<ClientDomain>> getByDistrict(int districtId) {
+    public Optional<List<ClientPojo>> getByDistrict(int districtId) {
         List<Cliente> clientes = clienteCrudRepository.findByIdDistritoOrderByNombreAsc(districtId);
         return Optional.of(clientMapper.toClients(clientes));
     }
 
     @Override
-    public Optional<ClientDomain> getClient(int clientId) {
+    public Optional<ClientPojo> getClient(int clientId) {
         return clienteCrudRepository.findById(clientId).map(producto -> clientMapper.toClient(producto));
     }
 
     @Override
-    public ClientDomain save(ClientDomain clientDomain) {
-        Cliente cliente = clientMapper.toCliente(clientDomain);
+    public ClientPojo save(ClientPojo clientPojo) {
+        Cliente cliente = clientMapper.toCliente(clientPojo);
         return clientMapper.toClient(clienteCrudRepository.save(cliente));
     }
 

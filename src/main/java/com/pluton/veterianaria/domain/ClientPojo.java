@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.domain;
 
-public class ClientDomain {
+public class ClientPojo {
 
     private int clientId;
 
@@ -13,7 +13,7 @@ public class ClientDomain {
 
     private String address;
 
-    private DistrictDomain districtDomain;
+    private DistrictPojo districtPojo;
 
     public int getClientId() {
         return clientId;
@@ -63,11 +63,11 @@ public class ClientDomain {
         this.address = address;
     }
 
-    public DistrictDomain getDistrictDomain() {
-        return districtDomain;
+    public DistrictPojo getDistrictDomain() {
+        return districtPojo;
     }
 
-    public void setDistrictDomain(DistrictDomain districtDomain) {
-        this.districtDomain = districtDomain;
+    public void setDistrictDomain(DistrictPojo districtPojo) {
+        this.districtPojo = districtPojo;
     }
 }

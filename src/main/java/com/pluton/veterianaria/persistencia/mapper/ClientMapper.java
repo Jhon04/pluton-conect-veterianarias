@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.persistencia.mapper;
 
-import com.pluton.veterianaria.domain.ClientDomain;
+import com.pluton.veterianaria.domain.ClientPojo;
 import com.pluton.veterianaria.persistencia.entity.Cliente;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -21,8 +21,8 @@ public interface ClientMapper {
             @Mapping(source = "direccion", target = "address"),
             @Mapping(source = "distrito", target = "districtDomain")
     })
-    ClientDomain toClient(Cliente cliente);
-    List<ClientDomain> toClients(List<Cliente> clientes);
+    ClientPojo toClient(Cliente cliente);
+    List<ClientPojo> toClients(List<Cliente> clientes);
 
     @InheritInverseConfiguration
     @Mappings({
@@ -37,7 +37,7 @@ public interface ClientMapper {
             @Mapping(target = "userMod", ignore = true),
             @Mapping(target = "usuario", ignore = true),
     })
-    Cliente toCliente(ClientDomain clientDomain);
-    List<Cliente> toClientes(List<ClientDomain> clientDomains);
+    Cliente toCliente(ClientPojo clientPojo);
+    List<Cliente> toClientes(List<ClientPojo> clientPojos);
 
 }

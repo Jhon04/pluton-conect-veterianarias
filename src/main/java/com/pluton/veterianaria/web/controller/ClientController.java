@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.web.controller;
 
-import com.pluton.veterianaria.domain.ClientDomain;
+import com.pluton.veterianaria.domain.ClientPojo;
 import com.pluton.veterianaria.domain.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,22 +15,22 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping("/all")
-    public List<ClientDomain> getAll(){
+    public List<ClientPojo> getAll(){
         return clientService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<ClientDomain> getClient(@PathVariable("id") int clientId){
+    public Optional<ClientPojo> getClient(@PathVariable("id") int clientId){
         return clientService.getClient(clientId);
     }
 
     @GetMapping("/district/{distritoId}")
-    public  Optional<List<ClientDomain>> getByDistrito(@PathVariable("distritoId") int ditrictId) {
+    public  Optional<List<ClientPojo>> getByDistrito(@PathVariable("distritoId") int ditrictId) {
         return clientService.getByDistrito(ditrictId);
     }
 
     @PostMapping("/save")
-    public ClientDomain save(@RequestBody ClientDomain client){
+    public ClientPojo save(@RequestBody ClientPojo client){
         return clientService.save(client);
     }
 

@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.domain;
 
-public class UserDomain {
+public class UserPojo {
 
     private int idUsuario;
 

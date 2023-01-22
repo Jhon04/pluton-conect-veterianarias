@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.persistencia.mapper;
 
-import com.pluton.veterianaria.domain.DistrictDomain;
+import com.pluton.veterianaria.domain.DistrictPojo;
 import com.pluton.veterianaria.persistencia.entity.Distrito;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -14,12 +14,12 @@ public interface DistrictMapper {
             @Mapping(source = "idDistrito", target = "districtId"),
             @Mapping(source = "nombreDistrito", target = "name"),
     })
-    DistrictDomain toDistrict(Distrito distrito);
+    DistrictPojo toDistrict(Distrito distrito);
 
     @InheritInverseConfiguration
     @Mappings({
             @Mapping(target = "idProvincia", ignore = true),
             @Mapping(target = "provincia", ignore = true)
     })
-    Distrito toDistrito(DistrictDomain districtDomain);
+    Distrito toDistrito(DistrictPojo districtPojo);
 }

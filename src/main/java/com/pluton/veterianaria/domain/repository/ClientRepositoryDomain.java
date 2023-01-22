@@ -1,15 +1,15 @@
 package com.pluton.veterianaria.domain.repository;
 
-import com.pluton.veterianaria.domain.ClientDomain;
+import com.pluton.veterianaria.domain.ClientPojo;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ClientRepositoryDomain {
-    List<ClientDomain> getAll();
-    Optional<List<ClientDomain>> getByDistrict(int districtId);
-    Optional<ClientDomain> getClient(int clientId);
-    ClientDomain save(ClientDomain clientDomain);
+    List<ClientPojo> getAll();
+    Optional<List<ClientPojo>> getByDistrict(int districtId);
+    Optional<ClientPojo> getClient(int clientId);
+    ClientPojo save(ClientPojo clientPojo);
     void delete(int clientId);
 
 }

@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.domain.services;
 
-import com.pluton.veterianaria.domain.ClientDomain;
+import com.pluton.veterianaria.domain.ClientPojo;
 import com.pluton.veterianaria.domain.repository.ClientRepositoryDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,19 +14,19 @@ public class ClientService {
     @Autowired
     private ClientRepositoryDomain clientRepositoryDomain;
 
-    public List<ClientDomain> getAll() {
+    public List<ClientPojo> getAll() {
         return clientRepositoryDomain.getAll();
     }
 
-    public Optional<ClientDomain> getClient(int clientId) {
+    public Optional<ClientPojo> getClient(int clientId) {
         return clientRepositoryDomain.getClient(clientId);
     }
 
-    public  Optional<List<ClientDomain>> getByDistrito(int ditrictId) {
+    public  Optional<List<ClientPojo>> getByDistrito(int ditrictId) {
         return clientRepositoryDomain.getByDistrict(ditrictId);
     }
 
-    public ClientDomain save(ClientDomain client){
+    public ClientPojo save(ClientPojo client){
         return clientRepositoryDomain.save(client);
     }
 

@@ -1,6 +1,6 @@
 package com.pluton.veterianaria.domain;
 
-public class DistrictDomain {
+public class DistrictPojo {
 
     private int districtId;
 
