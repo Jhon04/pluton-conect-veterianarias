@@ -29,13 +29,13 @@ public interface ClienteMapper {
             @Mapping(source = "distrito"    , target = "distrito"   )
     })
     ClientePojo toClientePojo(Cliente cliente);
-    List<ClientePojo> toClientesPojo(List<Cliente> clientes);
+    List<ClientePojo> toListClientesPojo(List<Cliente> clientes);
 
     @InheritInverseConfiguration
     @Mappings({
             @Mapping(target = "usuario", ignore = true)
     })
     Cliente toCliente(ClientePojo clientePojo);
-    List<Cliente> toClientes(List<ClientePojo> clientesPojos);
+    List<Cliente> toListClientes(List<ClientePojo> clientesPojos);
 
 }

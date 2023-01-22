@@ -1,7 +1,6 @@
 package com.pluton.veterianaria.persistencia.mapper;
 
-import com.pluton.veterianaria.domain.DepartmentDomain;
-import com.pluton.veterianaria.persistencia.entity.Cliente;
+import com.pluton.veterianaria.domain.DepartamentoPojo;
 import com.pluton.veterianaria.persistencia.entity.Departamento;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -14,14 +13,14 @@ import java.util.List;
 public interface DepartamentoMapper {
 
     @Mappings({
-            @Mapping(source = "idDepartamento", target = "idDepartment"),
-            @Mapping(source = "nombreDepartamento", target = "nameDepartment"),
+            @Mapping(source = "idDepartamento", target = "idDepartamento"),
+            @Mapping(source = "nombreDepartamento", target = "nombreDepartamento"),
     })
-    DepartmentDomain toDepartment(Departamento departamento);
-    List<DepartmentDomain> toDepartments(List<Departamento> departamento);
+    DepartamentoPojo toDepartamentoPojo(Departamento departamento);
+    List<DepartamentoPojo> toListDepartamentosPojo(List<Departamento> departamento);
 
     @InheritInverseConfiguration
-    Departamento toDepartamento(DepartmentDomain departmentDomain);
-    List<Departamento> toDepartamentos(List<DepartmentDomain> departmentDomain);
+    Departamento toDepartamento(DepartamentoPojo departamentoPojo);
+    List<Departamento> toListDepartamentos(List<DepartamentoPojo> departamentoPojo);
 
 }

@@ -22,13 +22,13 @@ public class ClienteRepository implements ClientRepositoryDomain {
     @Override
     public List<ClientePojo> getAll() {
         List<Cliente> clientes = (List<Cliente>) clienteCrudRepository.findAll();
-        return  clienteMapper.toClientesPojo(clientes);
+        return  clienteMapper.toListClientesPojo(clientes);
     }
 
     @Override
     public Optional<List<ClientePojo>> getByDistrict(int districtId) {
         List<Cliente> clientes = clienteCrudRepository.findByIdDistritoOrderByNombreAsc(districtId);
-        return Optional.of(clienteMapper.toClientesPojo(clientes));
+        return Optional.of(clienteMapper.toListClientesPojo(clientes));
     }
 
     @Override
