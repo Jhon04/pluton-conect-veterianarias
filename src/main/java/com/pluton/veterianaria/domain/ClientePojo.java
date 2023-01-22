@@ -22,27 +22,27 @@ public class ClientePojo {
     private UsuarioPojo usuario;
     private DistrictPojo distrito;
 
-    public Integer getIdCliente() {
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
-    public Integer getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public Integer getIdDistrito() {
+    public int getIdDistrito() {
         return idDistrito;
     }
 
-    public void setIdDistrito(Integer idDistrito) {
+    public void setIdDistrito(int idDistrito) {
         this.idDistrito = idDistrito;
     }
 
@@ -118,7 +118,7 @@ public class ClientePojo {
         this.ubicacion = ubicacion;
     }
 
-    public boolean getEstado() {
+    public boolean isEstado() {
         return estado;
     }
 
@@ -134,11 +134,11 @@ public class ClientePojo {
         this.fechMod = fechMod;
     }
 
-    public Integer getUserMod() {
+    public int getUserMod() {
         return userMod;
     }
 
-    public void setUserMod(Integer userMod) {
+    public void setUserMod(int userMod) {
         this.userMod = userMod;
     }
 
