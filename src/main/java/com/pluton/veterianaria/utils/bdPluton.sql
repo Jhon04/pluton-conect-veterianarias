@@ -1,9 +1,9 @@
 /*
 drop database pluton;
-create database pluton;
 */
 
 create database pluton;
+use pluton;
 /*---------------------------*/
 /*    TABLAS @ChugnasIvan    */
 /*---------------------------*/
