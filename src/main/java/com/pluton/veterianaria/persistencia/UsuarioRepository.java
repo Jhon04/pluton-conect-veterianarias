@@ -2,8 +2,6 @@ package com.pluton.veterianaria.persistencia;
 
 import com.pluton.veterianaria.domain.UsuarioPojo;
 import com.pluton.veterianaria.domain.repository.UsuarioRepositoryDomain;
-import com.pluton.veterianaria.persistencia.crud.ClienteCrudRepository;
-import com.pluton.veterianaria.persistencia.crud.TipoUsuarioCrudRepository;
 import com.pluton.veterianaria.persistencia.crud.UsuarioCrudRepository;
 import com.pluton.veterianaria.persistencia.entity.Usuario;
 import com.pluton.veterianaria.persistencia.mapper.UsuarioMapper;
