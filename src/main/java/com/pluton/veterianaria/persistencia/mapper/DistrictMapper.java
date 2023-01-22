@@ -14,7 +14,7 @@ public interface DistrictMapper {
             @Mapping(source = "idDistrito", target = "districtId"),
             @Mapping(source = "nombreDistrito", target = "name"),
     })
-    DistrictPojo toDistrict(Distrito distrito);
+    DistrictPojo toDistrictPojo(Distrito distrito);
 
     @InheritInverseConfiguration
     @Mappings({

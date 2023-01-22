@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UsuarioCrudRepository extends CrudRepository<Usuario, Integer> {
 
-    List<Usuario> findByIdTipoUusarioOrderBynombreTipoUsuAsc(int idTipoUsuario);
+    List<Usuario> findByIdTipoUsuarioOrderByIdUsuarioAsc(int idTipoUsuario);
 
 }

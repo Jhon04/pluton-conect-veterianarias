@@ -30,7 +30,7 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 
     @Override
     public Optional<List<UsuarioPojo>> getByTipoUsuario(int idTipoUsuario) {
-        List<Usuario> usuarios = usuarioCrudRepository.findByIdTipoUusarioOrderBynombreTipoUsuAsc(idTipoUsuario);
+        List<Usuario> usuarios = usuarioCrudRepository.findByIdTipoUsuarioOrderByIdUsuarioAsc(idTipoUsuario);
         return Optional.of(usuarioMapper.toUsuariosPojo(usuarios));
     }
 
