@@ -28,7 +28,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            // Ivan
+            // Ivan //rubif
             String username = System.getProperty("user.name");
             System.out.println("Username: " + username);
             System.out.println("URL_BASE: " + URL_BASE);
