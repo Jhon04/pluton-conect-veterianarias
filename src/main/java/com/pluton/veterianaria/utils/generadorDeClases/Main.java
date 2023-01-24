@@ -17,7 +17,7 @@ public class Main {
     static tabla tablaByRepository = new tabla();
     static tabla tablaByController = new tabla();
     static String stringTablaBd = "";
-    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
+    static String URL_BASE = "D:/TESIS/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
     static String URL_ENTIDAD = "";
     static String NOMBRE_ARCHIVO = "";
     static String EXTENXION = ".java";
