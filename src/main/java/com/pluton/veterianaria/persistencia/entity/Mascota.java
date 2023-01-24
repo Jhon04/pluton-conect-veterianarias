@@ -1,77 +1,47 @@
 package com.pluton.veterianaria.persistencia.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name ="mascota")
 public class Mascota implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_mascota")
+	private Integer idMascota;
 
-    private int idMascota;
-    private int idTipoMascota;
+	@Column(name = "id_tipo_mascota")
+	private Integer idTipoMascota;
 
-    private String nombre;
-    private Integer edad;
-    private Double peso;
-    private Double size;
+	@Column(name = "nombre_mas")
+	private Integer nombreMas;
 
-    private Boolean estado;
+	@Column(name = "edad_mas")
+	private Boolean edadMas;
 
-    public Mascota() {
-    }
 
-    public int getIdMascota() {
-        return idMascota;
-    }
+	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
+	private TipoMascota tipo_mascota;
 
-    public void setIdMascota(int idMascota) {
-        this.idMascota = idMascota;
-    }
+	public Mascota() {}
+	public Integer getIdMascota(){ return idMascota; }
 
-    public int getIdTipoMascota() {
-        return idTipoMascota;
-    }
+	public void setIdMascota(Integer idMascota){this.idMascota = idMascota;}
 
-    public void setIdTipoMascota(int idTipoMascota) {
-        this.idTipoMascota = idTipoMascota;
-    }
+	public Integer getIdTipoMascota(){ return idTipoMascota; }
 
-    public String getNombre() {
-        return nombre;
-    }
+	public void setIdTipoMascota(Integer idTipoMascota){this.idTipoMascota = idTipoMascota;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public Integer getNombreMas(){ return nombreMas; }
 
-    public Integer getEdad() {
-        return edad;
-    }
+	public void setNombreMas(Integer nombreMas){this.nombreMas = nombreMas;}
 
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
+	public Boolean getEdadMas(){ return edadMas; }
 
-    public Double getPeso() {
-        return peso;
-    }
+	public void setEdadMas(Boolean edadMas){this.edadMas = edadMas;}
 
-    public void setPeso(Double peso) {
-        this.peso = peso;
-    }
-
-    public Double getSize() {
-        return size;
-    }
-
-    public void setSize(Double size) {
-        this.size = size;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 }
