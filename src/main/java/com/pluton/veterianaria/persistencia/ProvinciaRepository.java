@@ -30,21 +30,23 @@ public class ProvinciaRepository implements ProvinciaRepositoryDomain {
 
 	@Override
 	public Optional<List<ProvinciaPojo>> getByDepartamento(int IdDepartamento) {
-		return Optional.empty();
+		List<Provincia> provincias = provinciaCrudRepository.findByIdDepartamentoOrderByNombreProAsc(IdDepartamento);
+		return Optional.of(provinciaMapper.toListProvinciaPojo(provincias));
 	}
 
 	@Override
 	public Optional<ProvinciaPojo> getProvincia(int IdProvincia) {
-		return Optional.empty();
+		return provinciaCrudRepository.findById(IdProvincia).map(prov -> provinciaMapper.toProvinciaPojo(prov));
 	}
 
 	@Override
 	public ProvinciaPojo save(ProvinciaPojo provinciaPojo) {
-		return null;
+		Provincia provincia = provinciaMapper.toProvincia(provinciaPojo);
+		return provinciaMapper.toProvinciaPojo(provinciaCrudRepository.save(provincia));
 	}
 
 	@Override
 	public void delete(int IdProvincia) {
-
+		provinciaCrudRepository.deleteById(IdProvincia);
 	}
 }
