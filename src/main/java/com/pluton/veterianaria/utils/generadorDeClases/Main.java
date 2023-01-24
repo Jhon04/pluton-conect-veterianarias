@@ -17,7 +17,7 @@ public class Main {
     static tabla tablaByRepository = new tabla();
     static tabla tablaByController = new tabla();
     static String stringTablaBd = "";
-    static String URL_BASE = "D:/TESIS/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
+    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
     static String URL_ENTIDAD = "";
     static String NOMBRE_ARCHIVO = "";
     static String EXTENXION = ".java";
@@ -35,10 +35,28 @@ public class Main {
             /*------------------------------------------------------------*/
             /* TABLA DE BASE DE DATOS DE REFERENCIA PARA CREAR EL ARCHIVO */
             /*------------------------------------------------------------*/
-            stringTablaBd = "CREATE TABLE PROVINCIA (\n" +
-                    "\tid_provincia INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,\n" +
-                    "    id_departamento INT NOT NULL,\n" +
-                    "    nombre_pro VARCHAR(100) NOT NULL\n" +
+            stringTablaBd = "CREATE TABLE EMPRESA (\n" +
+                    "\tid_empresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,\n" +
+                    "    id_usuario INT NOT NULL,\n" +
+                    "    id_distrito INT NOT NULL,\n" +
+                    "\n" +
+                    "    nombre_emp VARCHAR(255) NOT NULL,\n" +
+                    "    descripcion_emp TEXT NOT NULL,\n" +
+                    "    email_emp VARCHAR(255),\n" +
+                    "    celular_emp CHAR(9),\n" +
+                    "\n" +
+                    "    img_back_emp VARCHAR(255),\n" +
+                    "    img_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    direccion_emp VARCHAR(255) NOT NULL,\n" +
+                    "    ubicacion_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    calificacion_emp CHAR(1) NOT NULL,\n" +
+                    "    verificacion_emp BOOLEAN NOT NULL,\n" +
+                    "\n" +
+                    "    estado BOOLEAN NOT NULL,\n" +
+                    "    fecha_mod DATE,\n" +
+                    "    user_mod INT\n" +
                     ");";
 
             generarArchivos();
