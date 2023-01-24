@@ -19,7 +19,7 @@ public class Main {
     static String stringTablaBd = "";
 
     static String URL_INTO_PROYECT = "/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
-    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis";
+    static String URL_BASE = "";
     static String URL_ENTIDAD = "";
     static String NOMBRE_ARCHIVO = "";
     static String EXTENXION = ".java";
@@ -28,10 +28,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            // Ivan //rubif
-            String username = System.getProperty("user.name");
-            System.out.println("Username: " + username);
-            System.out.println("URL_BASE: " + URL_BASE);
+            configurarUrlBasePorUsuario();
 
             /*----------------------------------------------------*/
             /*  ARCHIVO A CREAR (todos, 1      , 2             , 3   , 4               , 5      , 6     , 7         , 8         ) */
@@ -66,11 +63,27 @@ public class Main {
                     "    user_mod INT\n" +
                     ");";
 
-            //generarArchivos();
+            generarArchivos();
         } catch (Exception e) {
             System.out.println("Error al escribir en el archivo. " +  e);
             e.printStackTrace();
         }
+    }
+
+    public static void configurarUrlBasePorUsuario(){
+        // Ivan //rubif //roomm
+        String username = System.getProperty("user.name");
+
+        if(username.equals("Ivan"))
+            URL_BASE = "D:/Archivos de Programas/ProyectoTesis";
+
+        if(username.equals("rubif"))
+            URL_BASE = "D:/TESIS";
+
+        if(username.equals("roomm"))
+            URL_BASE = "D:/ProyectoTesis";
+
+        URL_BASE += URL_BASE + URL_INTO_PROYECT;
     }
 
     public static void generarArchivos(){
