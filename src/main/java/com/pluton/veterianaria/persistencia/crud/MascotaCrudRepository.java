@@ -4,7 +4,7 @@ import com.pluton.veterianaria.persistencia.entity.Mascota;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface MascotaCrudRepository extends CrudRepository<MascotaCrudRepository, Integer> {
+public interface MascotaCrudRepository extends CrudRepository<Mascota, Integer> {
 
 
 }

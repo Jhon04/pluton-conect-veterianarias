@@ -83,7 +83,7 @@ public class Main {
         if(username.equals("roomm"))
             URL_BASE = "D:/ProyectoTesis";
 
-        URL_BASE += URL_BASE + URL_INTO_PROYECT;
+        URL_BASE += URL_INTO_PROYECT;
     }
 
     public static void generarArchivos(){
