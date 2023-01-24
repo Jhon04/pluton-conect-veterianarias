@@ -17,7 +17,9 @@ public class Main {
     static tabla tablaByRepository = new tabla();
     static tabla tablaByController = new tabla();
     static String stringTablaBd = "";
-    static String URL_BASE = "D:/ProyectoTesis" + "/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
+
+    static String URL_INTO_PROYECT = "/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
+    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis";
     static String URL_ENTIDAD = "";
     static String NOMBRE_ARCHIVO = "";
     static String EXTENXION = ".java";
@@ -26,6 +28,11 @@ public class Main {
     public static void main(String[] args) {
 
         try {
+            // Ivan //rubif
+            String username = System.getProperty("user.name");
+            System.out.println("Username: " + username);
+            System.out.println("URL_BASE: " + URL_BASE);
+
             /*----------------------------------------------------*/
             /*  ARCHIVO A CREAR (todos, 1      , 2             , 3   , 4               , 5      , 6     , 7         , 8         ) */
             /*  ARCHIVO A CREAR (todos, entidad, crudRepository, pojo, repositoryDomain, service, mapper, repository, controller) */
@@ -35,18 +42,31 @@ public class Main {
             /*------------------------------------------------------------*/
             /* TABLA DE BASE DE DATOS DE REFERENCIA PARA CREAR EL ARCHIVO */
             /*------------------------------------------------------------*/
-            stringTablaBd = "CREATE TABLE MASCOTA (\n" +
-                    "    id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\n" +
-                    "    id_tipo_mascota INT NOT NULL,\n" +
-                    "    nombre_mas varchar(255) NOT NULL,\n" +
-                    "    edad_mas INT NOT NULL,\n" +
-                    "    peso_mas decimal(3.3) NOT NULL,\n" +
-                    "    size_mas decimal(3.3) NOT NULL,\n" +
+            stringTablaBd = "CREATE TABLE EMPRESA (\n" +
+                    "\tid_empresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,\n" +
+                    "    id_usuario INT NOT NULL,\n" +
+                    "    id_distrito INT NOT NULL,\n" +
                     "\n" +
-                    "    estado BOOLEAN NOT NULL\n" +
+                    "    nombre_emp VARCHAR(255) NOT NULL,\n" +
+                    "    descripcion_emp TEXT NOT NULL,\n" +
+                    "    email_emp VARCHAR(255),\n" +
+                    "    celular_emp CHAR(9),\n" +
+                    "\n" +
+                    "    img_back_emp VARCHAR(255),\n" +
+                    "    img_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    direccion_emp VARCHAR(255) NOT NULL,\n" +
+                    "    ubicacion_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    calificacion_emp CHAR(1) NOT NULL,\n" +
+                    "    verificacion_emp BOOLEAN NOT NULL,\n" +
+                    "\n" +
+                    "    estado BOOLEAN NOT NULL,\n" +
+                    "    fecha_mod DATE,\n" +
+                    "    user_mod INT\n" +
                     ");";
 
-            generarArchivos();
+            //generarArchivos();
         } catch (Exception e) {
             System.out.println("Error al escribir en el archivo. " +  e);
             e.printStackTrace();
@@ -391,7 +411,7 @@ public class Main {
                 "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
                 "import org.springframework.data.repository.CrudRepository;" + System.lineSeparator() + System.lineSeparator() +
 
-                "public interface " +  tablaByCrudRepository.getNombreClase() + " extends CrudRepository<" + tablaByCrudRepository.getNombreClase() + ", Integer> {" + System.lineSeparator();
+                "public interface " +  tablaByCrudRepository.getNombreClase() + " extends CrudRepository<" + tablaByEntidad.getNombreClase() + ", Integer> {" + System.lineSeparator();
 
         /*---------------------------*/
         /*           BODY            */
