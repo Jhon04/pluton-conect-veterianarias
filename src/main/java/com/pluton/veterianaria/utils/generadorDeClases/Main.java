@@ -17,7 +17,7 @@ public class Main {
     static tabla tablaByRepository = new tabla();
     static tabla tablaByController = new tabla();
     static String stringTablaBd = "";
-    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis/" + "pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
+    static String URL_BASE = "D:/Archivos de Programas/ProyectoTesis" + "/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
     static String URL_ENTIDAD = "";
     static String NOMBRE_ARCHIVO = "";
     static String EXTENXION = ".java";
@@ -26,6 +26,10 @@ public class Main {
     public static void main(String[] args) {
 
         try {
+            String username = System.getProperty("user.name");
+            System.out.println("Username: " + username);
+            System.out.println("URL_BASE: " + URL_BASE);
+
             /*----------------------------------------------------*/
             /*  ARCHIVO A CREAR (todos, 1      , 2             , 3   , 4               , 5      , 6     , 7         , 8         ) */
             /*  ARCHIVO A CREAR (todos, entidad, crudRepository, pojo, repositoryDomain, service, mapper, repository, controller) */
@@ -59,7 +63,7 @@ public class Main {
                     "    user_mod INT\n" +
                     ");";
 
-            generarArchivos();
+            //generarArchivos();
         } catch (Exception e) {
             System.out.println("Error al escribir en el archivo. " +  e);
             e.printStackTrace();
