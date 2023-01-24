@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface TipoMascotaCrudRepository extends CrudRepository<TipoMascotaCrudRepository, Integer> {
+public interface TipoMascotaCrudRepository extends CrudRepository<TipoMascota, Integer> {
 
 
 }
