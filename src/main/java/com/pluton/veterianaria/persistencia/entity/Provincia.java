@@ -4,59 +4,38 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "provincia")
+@Table(name ="provincia")
 public class Provincia implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_provincia")
-    private Integer idProvincia;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_provincia")
+	private Integer idProvincia;
 
-    @Column(name = "id_departamento")
-    private Integer idDepartamento;
+	@Column(name = "id_departamento")
+	private Integer idDepartamento;
 
-    @Column(name = "nombre_pro")
-    private String nombreProvincia;
+	@Column(name = "nombre_pro")
+	private String nombrePro;
 
-    // (Many) Un *Departamento puede tener muchas *Provincias
-    // (One) Una *Provincia solo puede pertenecer a un *Departamento
-    @ManyToOne
-    @JoinColumn(name = "id_departamento", insertable = false, updatable = false)
-    private Departamento departamento;
 
-    public Provincia() {
-    }
+	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	@ManyToOne
+	@JoinColumn(name = "id_departamento", insertable = false, updatable = false)
+	private Departamento departamento;
 
-    public Integer getIdProvincia() {
-        return idProvincia;
-    }
+	public Provincia() {}
+	public Integer getIdProvincia(){ return idProvincia; }
 
-    public void setIdProvincia(Integer idProvincia) {
-        this.idProvincia = idProvincia;
-    }
+	public void setIdProvincia(Integer idProvincia){this.idProvincia = idProvincia;}
 
-    public Departamento getDepartamento() {
-        return departamento;
-    }
+	public Integer getIdDepartamento(){ return idDepartamento; }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
+	public void setIdDepartamento(Integer idDepartamento){this.idDepartamento = idDepartamento;}
 
-    public String getNombreProvincia() {
-        return nombreProvincia;
-    }
+	public String getNombrePro(){ return nombrePro; }
 
-    public void setNombreProvincia(String nombreProvincia) {
-        this.nombreProvincia = nombreProvincia;
-    }
+	public void setNombrePro(String nombrePro){this.nombrePro = nombrePro;}
 
-    public Integer getIdDepartamento() {
-        return idDepartamento;
-    }
-
-    public void setIdDepartamento(Integer idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
 }
