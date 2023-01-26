@@ -24,8 +24,8 @@ public class Mascota implements Serializable {
 
 
 	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
-	@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
-	private TipoMascota tipo_mascota;
+	//@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
+	//private TipoMascota tipo_mascota;
 
 	public Mascota() {}
 	public Integer getIdMascota(){ return idMascota; }
