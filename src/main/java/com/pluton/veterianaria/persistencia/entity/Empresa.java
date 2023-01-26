@@ -3,6 +3,7 @@ package com.pluton.veterianaria.persistencia.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name ="empresa")
@@ -19,6 +20,9 @@ public class Empresa implements Serializable {
 
 	@Column(name = "id_distrito")
 	private Integer idDistrito;
+
+	@Column(name = "id_estado")
+	private Integer idEstado;
 
 	@Column(name = "nombre_emp")
 	private String nombreEmp;
@@ -48,10 +52,7 @@ public class Empresa implements Serializable {
 	private Boolean calificacionEmp;
 
 	@Column(name = "verificacion_emp")
-	private Boolean verificacionEmp;
-
-	@Column(name = "estado")
-	private Date estado;
+	private Date verificacionEmp;
 
 	@Column(name = "fecha_mod")
 	private Integer fechaMod;
@@ -66,7 +67,19 @@ public class Empresa implements Serializable {
 	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
 	private Distrito distrito;
 
+	// (Many) Un estado lo puede tener muchos clientes
+	// (One) UnCliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "empresa_comentario",
+			joinColumns = @JoinColumn(name = "id_empresa"),
+			inverseJoinColumns = @JoinColumn(name = "id_comentario"))
+	private List<Comentario> comentarios;
 	public Empresa() {}
+
 	public Integer getIdEmpresa(){ return idEmpresa; }
 
 	public void setIdEmpresa(Integer idEmpresa){this.idEmpresa = idEmpresa;}
@@ -78,6 +91,10 @@ public class Empresa implements Serializable {
 	public Integer getIdDistrito(){ return idDistrito; }
 
 	public void setIdDistrito(Integer idDistrito){this.idDistrito = idDistrito;}
+
+	public Integer getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
 	public String getNombreEmp(){ return nombreEmp; }
 
@@ -115,16 +132,19 @@ public class Empresa implements Serializable {
 
 	public void setCalificacionEmp(Boolean calificacionEmp){this.calificacionEmp = calificacionEmp;}
 
-	public Boolean getVerificacionEmp(){ return verificacionEmp; }
+	public Date getVerificacionEmp(){ return verificacionEmp; }
 
-	public void setVerificacionEmp(Boolean verificacionEmp){this.verificacionEmp = verificacionEmp;}
-
-	public Date getEstado(){ return estado; }
-
-	public void setEstado(Date estado){this.estado = estado;}
+	public void setVerificacionEmp(Date verificacionEmp){this.verificacionEmp = verificacionEmp;}
 
 	public Integer getFechaMod(){ return fechaMod; }
 
 	public void setFechaMod(Integer fechaMod){this.fechaMod = fechaMod;}
 
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 }

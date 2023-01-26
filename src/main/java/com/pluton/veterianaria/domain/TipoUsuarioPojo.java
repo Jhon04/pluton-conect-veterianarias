@@ -2,31 +2,24 @@ package com.pluton.veterianaria.domain;
 
 public class TipoUsuarioPojo {
 
-    private int idTipoUsuario;
-    private String nombreTipoUsu;
-    private boolean estado;
+	private int idTipoUsuario;
 
-    public int getIdTipoUsuario() {
-        return idTipoUsuario;
-    }
+	private int idEstado;
 
-    public void setIdTipoUsuario(int idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
-    }
+	private String nombreTipUsu;
 
-    public String getNombreTipoUsu() {
-        return nombreTipoUsu;
-    }
 
-    public void setNombreTipoUsu(String nombreTipoUsu) {
-        this.nombreTipoUsu = nombreTipoUsu;
-    }
+	public TipoUsuarioPojo() { }
+	public int getIdTipoUsuario(){ return idTipoUsuario; }
 
-    public boolean isEstado() {
-        return estado;
-    }
+	public void setIdTipoUsuario(int idTipoUsuario){this.idTipoUsuario = idTipoUsuario;}
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
+	public String getNombreTipUsu(){ return nombreTipUsu; }
+
+	public void setNombreTipUsu(String nombreTipUsu){this.nombreTipUsu = nombreTipUsu;}
+
 }

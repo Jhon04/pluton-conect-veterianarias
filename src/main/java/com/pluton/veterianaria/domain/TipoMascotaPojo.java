@@ -6,9 +6,9 @@ public class TipoMascotaPojo {
 
 	private int idRaza;
 
-	private String nombreTipMas;
+	private int idEstado;
 
-	private boolean estado;
+	private String nombreTipMas;
 
 
 	public TipoMascotaPojo() { }
@@ -20,12 +20,12 @@ public class TipoMascotaPojo {
 
 	public void setIdRaza(int idRaza){this.idRaza = idRaza;}
 
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
 	public String getNombreTipMas(){ return nombreTipMas; }
 
 	public void setNombreTipMas(String nombreTipMas){this.nombreTipMas = nombreTipMas;}
-
-	public boolean getEstado(){ return estado; }
-
-	public void setEstado(boolean estado){this.estado = estado;}
 
 }

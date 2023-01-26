@@ -11,6 +11,8 @@ CREATE TABLE CLIENTE (
 	id_cliente INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_usuario INT NOT NULL,
     id_distrito INT NOT NULL,
+    id_estado INT NOT NULL,
+
     direccion_cli VARCHAR(255) NOT NULL,
 	nombre_cli VARCHAR(255) NOT NULL,
 	ape_paterno_cli VARCHAR(100) NOT NULL,
@@ -21,42 +23,41 @@ CREATE TABLE CLIENTE (
 	img_cli VARCHAR(255) NOT NULL,
     img_back_cli VARCHAR(255) NOT NULL,
 	fecha_mod DATE,
-	user_mod INT,
-
-	id_estado INT NOT NULL
+	user_mod INT
 );
 
 CREATE TABLE COMENTARIO (
     id_comentario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_cliente INT NOT NULL,
+    id_estado INT NOT NULL,
 
     titulo_com varchar(120) NOT NULL,
     comentario TEXT NOT NULL,
     fecha_com DATE NOT NULL,
-    calificacion_com CHAR(1) NOT NULL,
-
-    id_estado INT NOT NULL
+    calificacion_com CHAR(1) NOT NULL
 );
 
 CREATE TABLE DEPARTAMENTO(
     id_departamento INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nombre_dep VARCHAR(50) NOT NULL,
-    id_estado INT NOT NULL
+    id_estado INT NOT NULL,
+
+    nombre_dep VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE PROVINCIA (
 	id_provincia INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
     id_departamento INT NOT NULL,
-    nombre_pro VARCHAR(100) NOT NULL,
-    id_estado INT NOT NULL
+    id_estado INT NOT NULL,
+
+    nombre_pro VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE DISTRITO (
 	id_distrito INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 	id_provincia INT NOT NULL,
-    nombre_dis VARCHAR(100) NOT NULL,
+	id_estado INT NOT NULL,
 
-    id_estado INT NOT NULL
+    nombre_dis VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE DET_EMPRESA_COMENTARIO (
@@ -68,6 +69,7 @@ CREATE TABLE EMPRESA (
 	id_empresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
     id_usuario INT NOT NULL,
     id_distrito INT NOT NULL,
+    id_estado INT NOT NULL,
 
     nombre_emp VARCHAR(255) NOT NULL,
     descripcion_emp TEXT NOT NULL,
@@ -84,8 +86,6 @@ CREATE TABLE EMPRESA (
     verificacion_emp BOOLEAN NOT NULL,
     fecha_mod DATE,
     user_mod INT,
-
-    id_estado INT NOT NULL
 );
 
 
@@ -95,57 +95,69 @@ CREATE TABLE EMPRESA (
 CREATE TABLE USUARIO (
 	id_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_tipo_usuario INT NOT NULL,
+	id_estado INT NOT NULL,
+
 	email_usu VARCHAR(255) NOT NULL,
 	password_usu VARCHAR(32) NOT NULL,
-
-	id_estado INT NOT NULL
 );
 
 CREATE TABLE TIPO_USUARIO (
     id_tipo_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nombre_tip_usu VARCHAR(255) NOT NULL,
-
-    id_estado INT NOT NULL
+    id_estado INT NOT NULL,
+    nombre_tip_usu VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE HISTORIAL_CLINICO (
-	id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_historial_clinico INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	id_mascota INT NOT NULL,
 	id_servicio INT NOT NULL,
-	observacion_historial VARCHAR(255) NOT NULL,
-	fecha_atencion DATE,
+	id_estado INT NOT NULL,
 
-    id_estado INT NOT NULL
+	observacion_historial VARCHAR(255) NOT NULL,
+	fecha_atencion DATE
 );
 
 CREATE TABLE SERVICIO (
 	id_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_empresa INT NOT NULL,
 	id_tipo_servicio INT NOT NULL,
-	id_calendario INT NOT NULL,
+	id_calendario_servicio INT NOT NULL,
+	id_estado INT NOT NULL,
+
 	nombre_ser VARCHAR(255) NOT NULL,
 	descripcion_ser VARCHAR(255) NOT NULL,
 	icon_ser VARCHAR(50) NOT NULL,
 	duracion_ser VARCHAR(10) NOT NULL,
 	precio_ser DECIMAL(6,2) NOT NULL,
-
-	id_estado INT NOT NULL
 );
 
-CREATE TABLE DET_RESERVA_SERVICIO (
+CREATE TABLE TIPO_SERVICIO (
+	id_tipo_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
+	id_estado INT NOT NULL,
+
+	nombre_tip_serv VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE RESERVA_ATENCION (
+    id_cita_reserva_atencion INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_cliente INT NOT NULL,
+    id_estado INT NOT NULL,
+
+    fecha_cit DATE NOT NULL,
+    hora_ini_cit DATETIME NOT NULL,
+    hora_fin_cit DATETIME NOT NULL,
+);
+
+CREATE TABLE DET_RESERVA_ATENCION_SERVICIO (
 	id_det_reserva_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	id_cita_reserva_atencion INT NOT NULL,
 	id_servicio INT NOT NULL
 );
 
-CREATE TABLE TIPO_SERVICIO (
-	id_tipo_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
-	nombre_tip_serv VARCHAR(255) NOT NULL,
-
-	id_estado INT NOT NULL
-);
-
 CREATE TABLE CALENDARIO_SERVICIO (
-	id_calendario INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
+	id_calendario_servicio INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
+	id_estado INT NOT NULL,
+
 	mes_ini CHAR(2) NOT NULL,
 	mes_fin CHAR(2) NOT NULL,
 	semana_ini CHAR(1) NOT NULL,
@@ -155,9 +167,7 @@ CREATE TABLE CALENDARIO_SERVICIO (
 	hora_ini CHAR(4) NOT NULL,
 	hora_fin CHAR(4) NOT NULL,
 	dias_semana_no_laborable_ini CHAR(2) NOT NULL,
-	dias_semana_no_laborable_fin CHAR(2) NOT NULL,
-
-	id_estado INT NOT NULL
+	dias_semana_no_laborable_fin CHAR(2) NOT NULL
 );
 
 /*---------------------------*/
@@ -166,38 +176,30 @@ CREATE TABLE CALENDARIO_SERVICIO (
 CREATE TABLE MASCOTA (
     id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_tipo_mascota INT NOT NULL,
+    id_estado INT NOT NULL,
+
     nombre_mas varchar(255) NOT NULL,
     edad_mas INT NOT NULL,
     peso_mas decimal(3.3) NOT NULL,
-    size_mas decimal(3.3) NOT NULL,
-
-    id_estado INT NOT NULL
+    size_mas decimal(3.3) NOT NULL
 );
 
 CREATE TABLE TIPO_MASCOTA (
     id_tipo_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_raza INT NOT NULL,
-    nombre_tip_mas VARCHAR(255) NOT NULL,
+    id_estado INT NOT NULL,
 
-    id_estado INT NOT NULL
+    nombre_tip_mas VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE RAZA (
     id_raza INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    id_estado INT NOT NULL,
+
     nombre_raz VARCHAR(255) NOT NULL,
-
-    id_estado INT NOT NULL
 );
 
-CREATE TABLE RESERVA_ATENCION (
-    id_cita_reserva_atencion INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    id_cliente INT NOT NULL,
-    fecha_cit DATE NOT NULL,
-    hora_ini_cit DATETIME NOT NULL,
-    hora_fin_cit DATETIME NOT NULL,
 
-    id_estado INT NOT NULL
-);
 
 CREATE TABLE DET_CLIENTE_MASCOTA (
     id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -266,7 +268,7 @@ FOREIGN KEY (id_tipo_servicio) REFERENCES TIPO_SERVICIO (id_tipo_servicio);
 
 ALTER TABLE SERVICIO
 ADD CONSTRAINT FK_SERVICIO_CALENDARIO_SERVICIO
-FOREIGN KEY (id_calendario) REFERENCES CALENDARIO_SERVICIO (id_calendario);
+FOREIGN KEY (id_calendario_servicio) REFERENCES CALENDARIO_SERVICIO (id_calendario_servicio);
 
 ALTER TABLE HISTORIAL_CLINICO
 ADD CONSTRAINT FK_HISTORIAL_CLINICO_SERVICIO
@@ -276,11 +278,11 @@ ALTER TABLE HISTORIAL_CLINICO
 ADD CONSTRAINT FK_HISTORIAL_CLINICO_MASCOTA
 FOREIGN KEY (id_mascota) REFERENCES MASCOTA (id_mascota);
 
-ALTER TABLE DET_RESERVA_SERVICIO
+ALTER TABLE DET_RESERVA_ATENCION_SERVICIO
 ADD CONSTRAINT FK_DET_RESERVA_SERVICIO_SERVICIO
 FOREIGN KEY (id_servicio) REFERENCES SERVICIO (id_servicio);
 
-ALTER TABLE DET_RESERVA_SERVICIO
+ALTER TABLE DET_RESERVA_ATENCION_SERVICIO
 ADD CONSTRAINT FK_DET_RESERVA_SERVICIO_RESERVA_ATENCION
 FOREIGN KEY (id_cita_reserva_atencion) REFERENCES RESERVA_ATENCION (id_cita_reserva_atencion);
 

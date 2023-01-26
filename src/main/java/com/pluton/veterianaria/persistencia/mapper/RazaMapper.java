@@ -15,8 +15,8 @@ public interface RazaMapper {
 
 	@Mappings({
 		@Mapping(source = "idRaza", target = "idRaza"),
-		@Mapping(source = "nombreRaz", target = "nombreRaz"),
 		@Mapping(source = "idEstado", target = "idEstado"),
+		@Mapping(source = "nombreRaz", target = "nombreRaz"),
 	})
 	RazaPojo toRazaPojo(Raza raza);
 	List<RazaPojo> toListRazaPojo(List<Raza> listraza);

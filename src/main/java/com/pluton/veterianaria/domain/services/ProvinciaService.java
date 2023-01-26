@@ -1,6 +1,5 @@
 package com.pluton.veterianaria.domain.services;
 
-import com.pluton.veterianaria.domain.ClientePojo;
 import com.pluton.veterianaria.domain.ProvinciaPojo;
 
 import com.pluton.veterianaria.domain.repository.ProvinciaRepositoryDomain;
@@ -17,26 +16,26 @@ public class ProvinciaService {
 	@Autowired
 	private ProvinciaRepositoryDomain provinciaRepositoryDomain;
 
-	public List<ProvinciaPojo> getAll() {
+	public List<ProvinciaPojo> getAll(){
 		return provinciaRepositoryDomain.getAll();
 	}
 
-	public Optional<ProvinciaPojo> getProvincia(int IdProvincia) {
-		return provinciaRepositoryDomain.getProvincia(IdProvincia);
+
+	public Optional<ProvinciaPojo> getProvinciaPojo(int idProvincia){
+		return provinciaRepositoryDomain.getProvinciaPojo(idProvincia);
 	}
 
-	public  Optional<List<ProvinciaPojo>> getByDepartamento(int IdDepartamento) {
-		return provinciaRepositoryDomain.getByDepartamento(IdDepartamento);
+	public  Optional<List<ProvinciaPojo>> getByDepartamentoPojo(int IdDepartamento) {
+		return provinciaRepositoryDomain.getByDepartamentoPojo(IdDepartamento);
 	}
 
-	public ProvinciaPojo save(ProvinciaPojo provincia){
-		return provinciaRepositoryDomain.save(provincia);
+	public ProvinciaPojo save(ProvinciaPojo provinciaPojo){
+		return provinciaRepositoryDomain.save(provinciaPojo);
 	}
 
-	public boolean delete(int IdProvincia){
-
-		return getProvincia(IdProvincia).map(prov -> {
-			provinciaRepositoryDomain.delete(IdProvincia);
+	public boolean delete(int idProvincia){
+		return getProvinciaPojo(idProvincia).map(provinciaPojo-> {
+			provinciaRepositoryDomain.delete(idProvincia);
 			return true;
 		}).orElse(false);
 	}

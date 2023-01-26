@@ -9,6 +9,8 @@ public class EmpresaPojo {
 
 	private int idDistrito;
 
+	private int idEstado;
+
 	private String nombreEmp;
 
 	private String descripcionEmp;
@@ -27,9 +29,7 @@ public class EmpresaPojo {
 
 	private boolean calificacionEmp;
 
-	private boolean verificacionEmp;
-
-	private Date estado;
+	private Date verificacionEmp;
 
 	private int fechaMod;
 
@@ -46,6 +46,10 @@ public class EmpresaPojo {
 	public int getIdDistrito(){ return idDistrito; }
 
 	public void setIdDistrito(int idDistrito){this.idDistrito = idDistrito;}
+
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
 
 	public String getNombreEmp(){ return nombreEmp; }
 
@@ -83,13 +87,9 @@ public class EmpresaPojo {
 
 	public void setCalificacionEmp(boolean calificacionEmp){this.calificacionEmp = calificacionEmp;}
 
-	public boolean getVerificacionEmp(){ return verificacionEmp; }
+	public Date getVerificacionEmp(){ return verificacionEmp; }
 
-	public void setVerificacionEmp(boolean verificacionEmp){this.verificacionEmp = verificacionEmp;}
-
-	public Date getEstado(){ return estado; }
-
-	public void setEstado(Date estado){this.estado = estado;}
+	public void setVerificacionEmp(Date verificacionEmp){this.verificacionEmp = verificacionEmp;}
 
 	public int getFechaMod(){ return fechaMod; }
 

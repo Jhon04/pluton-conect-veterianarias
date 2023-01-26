@@ -16,8 +16,8 @@ public interface MascotaMapper {
 	@Mappings({
 		@Mapping(source = "idMascota", target = "idMascota"),
 		@Mapping(source = "idTipoMascota", target = "idTipoMascota"),
+		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "nombreMas", target = "nombreMas"),
-		@Mapping(source = "edadMas", target = "edadMas"),
 	})
 	MascotaPojo toMascotaPojo(Mascota mascota);
 	List<MascotaPojo> toListMascotaPojo(List<Mascota> listmascota);

@@ -16,6 +16,9 @@ public class Provincia implements Serializable {
 	@Column(name = "id_departamento")
 	private Integer idDepartamento;
 
+	@Column(name = "id_estado")
+	private Integer idEstado;
+
 	@Column(name = "nombre_pro")
 	private String nombrePro;
 
@@ -25,6 +28,12 @@ public class Provincia implements Serializable {
 	@JoinColumn(name = "id_departamento", insertable = false, updatable = false)
 	private Departamento departamento;
 
+	// (Many) Un estado lo puede tener muchos clientes
+	// (One) UnCliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
+
 	public Provincia() {}
 	public Integer getIdProvincia(){ return idProvincia; }
 
@@ -33,6 +42,10 @@ public class Provincia implements Serializable {
 	public Integer getIdDepartamento(){ return idDepartamento; }
 
 	public void setIdDepartamento(Integer idDepartamento){this.idDepartamento = idDepartamento;}
+
+	public Integer getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
 	public String getNombrePro(){ return nombrePro; }
 

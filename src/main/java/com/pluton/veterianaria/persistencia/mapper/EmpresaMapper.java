@@ -17,6 +17,7 @@ public interface EmpresaMapper {
 		@Mapping(source = "idEmpresa", target = "idEmpresa"),
 		@Mapping(source = "idUsuario", target = "idUsuario"),
 		@Mapping(source = "idDistrito", target = "idDistrito"),
+		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "nombreEmp", target = "nombreEmp"),
 		@Mapping(source = "descripcionEmp", target = "descripcionEmp"),
 		@Mapping(source = "emailEmp", target = "emailEmp"),
@@ -27,7 +28,6 @@ public interface EmpresaMapper {
 		@Mapping(source = "ubicacionEmp", target = "ubicacionEmp"),
 		@Mapping(source = "calificacionEmp", target = "calificacionEmp"),
 		@Mapping(source = "verificacionEmp", target = "verificacionEmp"),
-		@Mapping(source = "estado", target = "estado"),
 		@Mapping(source = "fechaMod", target = "fechaMod"),
 	})
 	EmpresaPojo toEmpresaPojo(Empresa empresa);

@@ -1,74 +1,68 @@
 package com.pluton.veterianaria.persistencia.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
-import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name ="reserva_atencion")
 public class ReservaAtencion implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cita_reserva_atencion")
+	private Integer idCitaReservaAtencion;
 
-    private int IdReservaAtencion;
-    private int idCliente;
-    private Date fecha;
-    private Date horaIni;
-    private Date horaFin;
-    private boolean estado;
+	@Column(name = "id_cliente")
+	private Integer idCliente;
 
-    public ReservaAtencion() {
-    }
+	@Column(name = "id_estado")
+	private Integer idEstado;
 
-    public int getIdReservaAtencion() {
-        return IdReservaAtencion;
-    }
+	@Column(name = "fecha_cit")
+	private Date fechaCit;
 
-    public void setIdReservaAtencion(int idReservaAtencion) {
-        IdReservaAtencion = idReservaAtencion;
-    }
+	@Column(name = "hora_ini_cit")
+	private Date horaIniCit;
 
-    public int getIdCliente() {
-        return idCliente;
-    }
+	@Column(name = "hora_fin_cit")
+	private Date horaFinCit;
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
 
-    @JsonSerialize(using = CustomJsonDateSerializer.class)
-    public Date getFecha() {
-        return fecha;
-    }
+	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+	private Cliente cliente;
 
-    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+	// (Many) Un estado lo puede tener muchos clientes
+	// (One) UnCliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
 
-    public Date getHoraIni() {
-        return horaIni;
-    }
+	public ReservaAtencion() {}
+	public Integer getIdCitaReservaAtencion(){ return idCitaReservaAtencion; }
 
-    public void setHoraIni(Date horaIni) {
-        this.horaIni = horaIni;
-    }
+	public void setIdCitaReservaAtencion(Integer idCitaReservaAtencion){this.idCitaReservaAtencion = idCitaReservaAtencion;}
 
-    public Date getHoraFin() {
-        return horaFin;
-    }
+	public Integer getIdCliente(){ return idCliente; }
 
-    public void setHoraFin(Date horaFin) {
-        this.horaFin = horaFin;
-    }
+	public void setIdCliente(Integer idCliente){this.idCliente = idCliente;}
 
-    public boolean isEstado() {
-        return estado;
-    }
+	public Integer getIdEstado(){ return idEstado; }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
+
+	public Date getFechaCit(){ return fechaCit; }
+
+	public void setFechaCit(Date fechaCit){this.fechaCit = fechaCit;}
+
+	public Date getHoraIniCit(){ return horaIniCit; }
+
+	public void setHoraIniCit(Date horaIniCit){this.horaIniCit = horaIniCit;}
+
+	public Date getHoraFinCit(){ return horaFinCit; }
+
+	public void setHoraFinCit(Date horaFinCit){this.horaFinCit = horaFinCit;}
+
 }

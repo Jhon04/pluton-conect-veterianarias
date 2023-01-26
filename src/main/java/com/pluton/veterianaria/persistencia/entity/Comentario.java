@@ -1,99 +1,67 @@
 package com.pluton.veterianaria.persistencia.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "comentario")
-public class Comentario {
+@Table(name ="comentario")
+public class Comentario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_comentario")
-    private Integer idComentario;
-    @Column(name = "id_cliente")
-    private Integer idCliente;
-    @Column(name = "titulo_com")
-    private String tituloCom;
-    @Column(name = "comentario")
-    private String comentario;
-    @Column(name = "fecha_com")
-    private Date fechaCom;
-    @Column(name = "calificacion_com")
-    private String calificacionCom;
-    @Column(name = "estado")
-    private Boolean estado;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_comentario")
+	private Integer idComentario;
 
-    // (Many) Un *Cliente puede tener muchos *Comentarios
-    // (One) Un *Comentario solo le pertenece a un *Cliente
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
-    private Cliente cliente;
+	@Column(name = "id_cliente")
+	private Integer idCliente;
 
-    public Comentario() {
-    }
+	@Column(name = "id_estado")
+	private Integer idEstado;
 
-    public Integer getIdComentario() {
-        return idComentario;
-    }
+	@Column(name = "titulo_com")
+	private Date tituloCom;
 
-    public void setIdComentario(Integer idComentario) {
-        this.idComentario = idComentario;
-    }
+	@Column(name = "comentario")
+	private String comentario;
 
-    public Integer getIdCliente() {
-        return idCliente;
-    }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
+	// (Many) Un *Cliente puede tener muchos *Comentarios
+	// (One) Un *Comentario solo le pertenece a un *Cliente
+	@ManyToOne
+	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+	private Cliente cliente;
 
-    public String getTituloCom() {
-        return tituloCom;
-    }
+	// (Many) Un estado lo puede tener muchos clientes
+	// (One) UnCliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
 
-    public void setTituloCom(String tituloCom) {
-        this.tituloCom = tituloCom;
-    }
+	@ManyToMany(mappedBy = "comentarios")
+	private List<Empresa> empresas;
 
-    public String getComentario() {
-        return comentario;
-    }
+	public Comentario() {}
+	public Integer getIdComentario(){ return idComentario; }
 
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
+	public void setIdComentario(Integer idComentario){this.idComentario = idComentario;}
 
-    public Date getFechaCom() {
-        return fechaCom;
-    }
+	public Integer getIdCliente(){ return idCliente; }
 
-    public void setFechaCom(Date fechaCom) {
-        this.fechaCom = fechaCom;
-    }
+	public void setIdCliente(Integer idCliente){this.idCliente = idCliente;}
 
-    public String getCalificacionCom() {
-        return calificacionCom;
-    }
+	public Integer getIdEstado(){ return idEstado; }
 
-    public void setCalificacionCom(String calificacionCom) {
-        this.calificacionCom = calificacionCom;
-    }
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-    public Boolean getEstado() {
-        return estado;
-    }
+	public Date getTituloCom(){ return tituloCom; }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
+	public void setTituloCom(Date tituloCom){this.tituloCom = tituloCom;}
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+	public String getComentario(){ return comentario; }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+	public void setComentario(String comentario){this.comentario = comentario;}
+
 }

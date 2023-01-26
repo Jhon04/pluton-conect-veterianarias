@@ -16,6 +16,7 @@ public interface ProvinciaMapper {
 	@Mappings({
 		@Mapping(source = "idProvincia", target = "idProvincia"),
 		@Mapping(source = "idDepartamento", target = "idDepartamento"),
+		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "nombrePro", target = "nombrePro"),
 	})
 	ProvinciaPojo toProvinciaPojo(Provincia provincia);

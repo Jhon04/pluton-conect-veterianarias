@@ -7,14 +7,10 @@ import java.util.Optional;
 
 public interface UsuarioRepositoryDomain {
 
-    List<UsuarioPojo> getAll();
-
-    Optional<List<UsuarioPojo>> getByTipoUsuario(int idTipoUsuario);
-
-    Optional<UsuarioPojo> getUsuario(int idUsuario);
-
-    UsuarioPojo save(UsuarioPojo usuarioPojo);
-
-    void delete(int idUsuario);
+	List<UsuarioPojo> getAll();
+	Optional<List<UsuarioPojo>> getByTipoUsuarioPojo(int idTipoUsuario);
+	Optional<UsuarioPojo> getUsuarioPojo(int idUsuario);
+	UsuarioPojo save(UsuarioPojo usuarioPojo);
+	void delete(int idUsuario);
 
 }

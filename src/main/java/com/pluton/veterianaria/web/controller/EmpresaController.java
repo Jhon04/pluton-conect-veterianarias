@@ -11,7 +11,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/empresa")
 public class EmpresaController {
-
 	@Autowired
 	private EmpresaService empresaService;
 
@@ -34,6 +33,5 @@ public class EmpresaController {
 	public boolean delete(@PathVariable("id")int idEmpresa){
 		return empresaService.delete(idEmpresa);
 	}
-
 
 }

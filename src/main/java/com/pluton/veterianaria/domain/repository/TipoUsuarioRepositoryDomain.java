@@ -7,11 +7,9 @@ import java.util.Optional;
 
 public interface TipoUsuarioRepositoryDomain {
 
-    List<TipoUsuarioPojo> getAll();
+	List<TipoUsuarioPojo> getAll();
+	Optional<TipoUsuarioPojo> getTipoUsuarioPojo(int idTipoUsuario);
+	TipoUsuarioPojo save(TipoUsuarioPojo tipoUsuarioPojo);
+	void delete(int idTipoUsuario);
 
-    Optional<TipoUsuarioPojo> getTipoUsuario(int idTipoUsuario);
-
-    TipoUsuarioPojo save(TipoUsuarioPojo TipousuarioPojo);
-
-    void delete(int idTipoUsuario);
 }

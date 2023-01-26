@@ -1,223 +1,139 @@
 package com.pluton.veterianaria.persistencia.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
-import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "cliente")
+@Table(name ="cliente")
 public class Cliente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
-    private Integer idCliente;
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_cliente")
+	private Integer idCliente;
 
-    @Column(name = "id_distrito")
-    private Integer idDistrito;
+	@Column(name = "id_usuario")
+	private Integer idUsuario;
 
-    @Column(name = "email_cli")
-    private String email;
+	@Column(name = "id_distrito")
+	private Integer idDistrito;
 
-    @Column(name = "nombre_cli")
-    private String nombre;
+	@Column(name = "direccion_cli")
+	private String direccionCli;
 
-    @Column(name = "ape_paterno_cli")
-    private String apePaterno;
+	@Column(name = "nombre_cli")
+	private String nombreCli;
 
-    @Column(name = "ape_materno_cli")
-    private String apeMaterno;
+	@Column(name = "ape_paterno_cli")
+	private String apePaternoCli;
 
-    @Column(name = "celular_cli")
-    private String celular;
+	@Column(name = "ape_materno_cli")
+	private String apeMaternoCli;
 
-    @Column(name = "img_back_cli")
-    private String imgBack;
+	@Column(name = "ubicacion_cli")
+	private String ubicacionCli;
 
-    @Column(name = "img_cli")
-    private String img;
+	@Column(name = "email_cli")
+	private String emailCli;
 
-    @Column(name = "direccion_cli")
-    private String direccion;
+	@Column(name = "celular_cli")
+	private String celularCli;
 
-    @Column(name = "ubicacion_cli")
-    private String ubicacion;
+	@Column(name = "img_cli")
+	private String imgCli;
 
-    @Column(name = "estado")
-    private Boolean estado;
+	@Column(name = "img_back_cli")
+	private String imgBackCli;
 
-    @Column(name = "fecha_mod")
-    private Date fechMod;
+	@Column(name = "fecha_mod")
+	private Date fechaMod;
 
-    @Column(name = "user_mod")
-    private Integer userMod;
+	@Column(name = "user_mod")
+	private Integer userMod;
 
-    // (One) Un *Usuario solo lo puede tener un *Cliente
-    // (One) Un *Cliente solo puede tener un *Usuario
-    @OneToOne
-    @JoinColumn(name = "id_usuario", insertable = false, updatable = false)
-    private Usuario usuario;
+	@Column(name = "id_estado")
+	private Integer idEstado;
 
-    // (Many) En un *Distrito pueden vivir varios *Clientes
-    // (One) Un *Cliente solo puede tener un *Usuario
-    @ManyToOne
-    @JoinColumn(name = "id_distrito", insertable = false, updatable = false)
-    private Distrito distrito;
 
-    public Cliente() {
-    }
+	// (One) Un *Usuario solo lo puede tener un *Cliente
+	// (One) Un *Cliente solo puede tener un *Usuario
+	@OneToOne
+	@JoinColumn(name = "id_usuario", insertable = false, updatable = false)
+	private Usuario usuario;
 
-    public Integer getIdCliente() {
-        return idCliente;
-    }
+	// (Many) En un *Distrito pueden vivir varios *Clientes
+	// (One) Un *Cliente solo puede tener un *Usuario
+	@ManyToOne
+	@JoinColumn(name = "id_distrito", insertable = false, updatable = false)
+	private Distrito distrito;
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
+	// (Many) Un estado lo puede tener muchos *clientes
+	// (One) Un *Cliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
 
-    public Integer getIdDistrito() {
-        return idDistrito;
-    }
+	public Cliente() {}
+	public Integer getIdCliente(){ return idCliente; }
 
-    public void setIdDistrito(Integer idDistrito) {
-        this.idDistrito = idDistrito;
-    }
+	public void setIdCliente(Integer idCliente){this.idCliente = idCliente;}
 
-    public String getEmail() {
-        return email;
-    }
+	public Integer getIdUsuario(){ return idUsuario; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setIdUsuario(Integer idUsuario){this.idUsuario = idUsuario;}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public Integer getIdDistrito(){ return idDistrito; }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setIdDistrito(Integer idDistrito){this.idDistrito = idDistrito;}
 
-    public String getCelular() {
-        return celular;
-    }
+	public String getDireccionCli(){ return direccionCli; }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
+	public void setDireccionCli(String direccionCli){this.direccionCli = direccionCli;}
 
-    public String getImgBack() {
-        return imgBack;
-    }
+	public String getNombreCli(){ return nombreCli; }
 
-    public void setImgBack(String imgBack) {
-        this.imgBack = imgBack;
-    }
+	public void setNombreCli(String nombreCli){this.nombreCli = nombreCli;}
 
-    public String getImg() {
-        return img;
-    }
+	public String getApePaternoCli(){ return apePaternoCli; }
 
-    public void setImg(String img) {
-        this.img = img;
-    }
+	public void setApePaternoCli(String apePaternoCli){this.apePaternoCli = apePaternoCli;}
 
-    public String getDireccion() {
-        return direccion;
-    }
+	public String getApeMaternoCli(){ return apeMaternoCli; }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+	public void setApeMaternoCli(String apeMaternoCli){this.apeMaternoCli = apeMaternoCli;}
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
+	public String getUbicacionCli(){ return ubicacionCli; }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+	public void setUbicacionCli(String ubicacionCli){this.ubicacionCli = ubicacionCli;}
 
-    public boolean isEstado() {
-        return estado;
-    }
+	public String getEmailCli(){ return emailCli; }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+	public void setEmailCli(String emailCli){this.emailCli = emailCli;}
 
-    @JsonSerialize(using = CustomJsonDateSerializer.class)
-    public Date getFechMod() {
-        return fechMod;
-    }
+	public String getCelularCli(){ return celularCli; }
 
-    @JsonDeserialize(using = CustomJsonDateDeserializer.class)
-    public void setFechMod(Date fechMod) {
-        this.fechMod = fechMod;
-    }
+	public void setCelularCli(String celularCli){this.celularCli = celularCli;}
 
-    public Integer getUserMod() {
-        return userMod;
-    }
+	public String getImgCli(){ return imgCli; }
 
-    public void setUserMod(Integer userMod) {
-        this.userMod = userMod;
-    }
+	public void setImgCli(String imgCli){this.imgCli = imgCli;}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public String getImgBackCli(){ return imgBackCli; }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setImgBackCli(String imgBackCli){this.imgBackCli = imgBackCli;}
 
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
+	public Date getFechaMod(){ return fechaMod; }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+	public void setFechaMod(Date fechaMod){this.fechaMod = fechaMod;}
 
-    public Distrito getDistrito() {
-        return distrito;
-    }
+	public Integer getUserMod(){ return userMod; }
 
-    public void setDistrito(Distrito distrito) {
-        this.distrito = distrito;
-    }
+	public void setUserMod(Integer userMod){this.userMod = userMod;}
 
-    public String getApePaterno() {
-        return apePaterno;
-    }
+	public Integer getIdEstado(){ return idEstado; }
 
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
-    }
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-    public String getApeMaterno() {
-        return apeMaterno;
-    }
-
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
 }

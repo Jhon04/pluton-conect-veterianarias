@@ -2,25 +2,24 @@ package com.pluton.veterianaria.domain;
 
 public class DepartamentoPojo {
 
-    private int idDepartamento;
-    private String nombreDepartamento;
+	private int idDepartamento;
 
-    public DepartamentoPojo() {
-    }
+	private int idEstado;
 
-    public int getIdDepartamento() {
-        return idDepartamento;
-    }
+	private String nombreDep;
 
-    public void setIdDepartamento(int idDepartamento) {
-        this.idDepartamento = idDepartamento;
-    }
 
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
-    }
+	public DepartamentoPojo() { }
+	public int getIdDepartamento(){ return idDepartamento; }
 
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
-    }
+	public void setIdDepartamento(int idDepartamento){this.idDepartamento = idDepartamento;}
+
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
+	public String getNombreDep(){ return nombreDep; }
+
+	public void setNombreDep(String nombreDep){this.nombreDep = nombreDep;}
+
 }

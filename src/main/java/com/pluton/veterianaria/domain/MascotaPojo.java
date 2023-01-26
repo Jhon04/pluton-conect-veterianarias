@@ -6,9 +6,9 @@ public class MascotaPojo {
 
 	private int idTipoMascota;
 
-	private int nombreMas;
+	private int idEstado;
 
-	private boolean edadMas;
+	private int nombreMas;
 
 
 	public MascotaPojo() { }
@@ -20,12 +20,12 @@ public class MascotaPojo {
 
 	public void setIdTipoMascota(int idTipoMascota){this.idTipoMascota = idTipoMascota;}
 
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
 	public int getNombreMas(){ return nombreMas; }
 
 	public void setNombreMas(int nombreMas){this.nombreMas = nombreMas;}
-
-	public boolean getEdadMas(){ return edadMas; }
-
-	public void setEdadMas(boolean edadMas){this.edadMas = edadMas;}
 
 }

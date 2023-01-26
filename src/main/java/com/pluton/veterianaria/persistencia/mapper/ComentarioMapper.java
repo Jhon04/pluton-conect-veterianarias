@@ -1,9 +1,8 @@
 package com.pluton.veterianaria.persistencia.mapper;
 
-import com.pluton.veterianaria.domain.ClientePojo;
 import com.pluton.veterianaria.domain.ComentarioPojo;
-import com.pluton.veterianaria.persistencia.entity.Cliente;
 import com.pluton.veterianaria.persistencia.entity.Comentario;
+
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -11,23 +10,20 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {})
 public interface ComentarioMapper {
 
-    @Mappings({
-            @Mapping(source = "idComentario"    , target = "idComentario"   ),
-            @Mapping(source = "idCliente"       , target = "idCliente"      ),
-            @Mapping(source = "tituloCom"       , target = "tituloCom"      ),
-            @Mapping(source = "comentario"      , target = "comentario"     ),
-            @Mapping(source = "fechaCom"        , target = "fechaCom"       ),
-            @Mapping(source = "calificacionCom" , target = "calificacionCom"),
-            @Mapping(source = "estado"          , target = "estado"         ),
-            @Mapping(source = "cliente"         , target = "cliente"        )
-    })
-    ComentarioPojo toComentarioPojo(Comentario comentario);
-    List<ComentarioPojo> toComentariosPojo(List<Comentario> comentarios);
+	@Mappings({
+		@Mapping(source = "idComentario", target = "idComentario"),
+		@Mapping(source = "idCliente", target = "idCliente"),
+		@Mapping(source = "idEstado", target = "idEstado"),
+		@Mapping(source = "tituloCom", target = "tituloCom"),
+		@Mapping(source = "comentario", target = "comentario"),
+	})
+	ComentarioPojo toComentarioPojo(Comentario comentario);
+	List<ComentarioPojo> toListComentarioPojo(List<Comentario> listcomentario);
+	@InheritInverseConfiguration
+	Comentario toComentario(ComentarioPojo comentariopojo);
+	List<Comentario> toListComentario(List<ComentarioPojo> listcomentariopojo);
 
-    @InheritInverseConfiguration
-    Comentario toComentario(ComentarioPojo comentarioPojo);
-    List<Comentario> toComentarios(List<ComentarioPojo> ComentariosPojo);
 }

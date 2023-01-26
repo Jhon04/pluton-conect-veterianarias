@@ -2,49 +2,36 @@ package com.pluton.veterianaria.domain;
 
 public class UsuarioPojo {
 
-    private int idUsuario;
-    private int idTipoUsuario;
-    private String email;
-    private String password;
-    private TipoUsuarioPojo tipoUsuario;
+	private int idUsuario;
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
+	private int idTipoUsuario;
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+	private int idEstado;
 
-    public int getIdTipoUsuario() {
-        return idTipoUsuario;
-    }
+	private String emailUsu;
 
-    public void setIdTipoUsuario(int idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
-    }
+	private String passwordUsu;
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public UsuarioPojo() { }
+	public int getIdUsuario(){ return idUsuario; }
 
-    public String getPassword() {
-        return password;
-    }
+	public void setIdUsuario(int idUsuario){this.idUsuario = idUsuario;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public int getIdTipoUsuario(){ return idTipoUsuario; }
 
-    public TipoUsuarioPojo getTipoUsuario() {
-        return tipoUsuario;
-    }
+	public void setIdTipoUsuario(int idTipoUsuario){this.idTipoUsuario = idTipoUsuario;}
 
-    public void setTipoUsuario(TipoUsuarioPojo tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
+	public String getEmailUsu(){ return emailUsu; }
+
+	public void setEmailUsu(String emailUsu){this.emailUsu = emailUsu;}
+
+	public String getPasswordUsu(){ return passwordUsu; }
+
+	public void setPasswordUsu(String passwordUsu){this.passwordUsu = passwordUsu;}
+
 }

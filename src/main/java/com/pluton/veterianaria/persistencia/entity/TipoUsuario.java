@@ -1,46 +1,42 @@
 package com.pluton.veterianaria.persistencia.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "tipo_usuario")
-public class TipoUsuario {
-    private static final long serialVersionUID = 1L;
+@Table(name ="tipo_usuario")
+public class TipoUsuario implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_usuario")
-    private Integer idTipoUsuario;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tipo_usuario")
+	private Integer idTipoUsuario;
 
-    @Column(name = "nombre_tip_usu")
-    private String nombreTipoUsu;
+	@Column(name = "id_estado")
+	private Integer idEstado;
 
-    private Boolean estado;
+	@Column(name = "nombre_tip_usu")
+	private String nombreTipUsu;
 
-    public TipoUsuario() {
-    }
 
-    public Integer getIdTipoUsuario() {
-        return idTipoUsuario;
-    }
+	// (Many) Un estado lo puede tener muchos clientes
+	// (One) UnCliente solo puede tener un estado
+	@ManyToOne
+	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
+	private Estado estado;
 
-    public void setIdTipoUsuario(Integer idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
-    }
+	public TipoUsuario() {}
+	public Integer getIdTipoUsuario(){ return idTipoUsuario; }
 
-    public String getNombreTipoUsu() {
-        return nombreTipoUsu;
-    }
+	public void setIdTipoUsuario(Integer idTipoUsuario){this.idTipoUsuario = idTipoUsuario;}
 
-    public void setNombreTipoUsu(String nombreTipoUsu) {
-        this.nombreTipoUsu = nombreTipoUsu;
-    }
+	public Integer getIdEstado(){ return idEstado; }
 
-    public Boolean getEstado() {
-        return estado;
-    }
+	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
+	public String getNombreTipUsu(){ return nombreTipUsu; }
+
+	public void setNombreTipUsu(String nombreTipUsu){this.nombreTipUsu = nombreTipUsu;}
+
 }

@@ -1,160 +1,98 @@
 package com.pluton.veterianaria.domain;
 
 import java.util.Date;
-
 public class ClientePojo {
 
-    private int idCliente;
-    private int idUsuario;
-    private int idDistrito;
-    private String email;
-    private String nombre;
-    private String apePaterno;
-    private String apeMaterno;
-    private String celular;
-    private String imgBack;
-    private String img;
-    private String direccion;
-    private String ubicacion;
-    private boolean estado;
-    private Date fechMod;
-    private int userMod;
-    private UsuarioPojo usuario;
-    private DistrictPojo distrito;
+	private int idCliente;
 
-    public int getIdCliente() {
-        return idCliente;
-    }
+	private int idUsuario;
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
+	private int idDistrito;
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
+	private String direccionCli;
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+	private String nombreCli;
 
-    public int getIdDistrito() {
-        return idDistrito;
-    }
+	private String apePaternoCli;
 
-    public void setIdDistrito(int idDistrito) {
-        this.idDistrito = idDistrito;
-    }
+	private String apeMaternoCli;
 
-    public String getEmail() {
-        return email;
-    }
+	private String ubicacionCli;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	private String emailCli;
 
-    public String getNombre() {
-        return nombre;
-    }
+	private String celularCli;
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	private String imgCli;
 
-    public String getApePaterno() {
-        return apePaterno;
-    }
+	private String imgBackCli;
 
-    public void setApePaterno(String apePaterno) {
-        this.apePaterno = apePaterno;
-    }
+	private Date fechaMod;
 
-    public String getApeMaterno() {
-        return apeMaterno;
-    }
+	private int userMod;
 
-    public void setApeMaterno(String apeMaterno) {
-        this.apeMaterno = apeMaterno;
-    }
+	private int idEstado;
 
-    public String getCelular() {
-        return celular;
-    }
 
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
+	public ClientePojo() { }
+	public int getIdCliente(){ return idCliente; }
 
-    public String getImgBack() {
-        return imgBack;
-    }
+	public void setIdCliente(int idCliente){this.idCliente = idCliente;}
 
-    public void setImgBack(String imgBack) {
-        this.imgBack = imgBack;
-    }
+	public int getIdUsuario(){ return idUsuario; }
 
-    public String getImg() {
-        return img;
-    }
+	public void setIdUsuario(int idUsuario){this.idUsuario = idUsuario;}
 
-    public void setImg(String img) {
-        this.img = img;
-    }
+	public int getIdDistrito(){ return idDistrito; }
 
-    public String getDireccion() {
-        return direccion;
-    }
+	public void setIdDistrito(int idDistrito){this.idDistrito = idDistrito;}
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+	public String getDireccionCli(){ return direccionCli; }
 
-    public String getUbicacion() {
-        return ubicacion;
-    }
+	public void setDireccionCli(String direccionCli){this.direccionCli = direccionCli;}
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+	public String getNombreCli(){ return nombreCli; }
 
-    public boolean isEstado() {
-        return estado;
-    }
+	public void setNombreCli(String nombreCli){this.nombreCli = nombreCli;}
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
+	public String getApePaternoCli(){ return apePaternoCli; }
 
-    public Date getFechMod() {
-        return fechMod;
-    }
+	public void setApePaternoCli(String apePaternoCli){this.apePaternoCli = apePaternoCli;}
 
-    public void setFechMod(Date fechMod) {
-        this.fechMod = fechMod;
-    }
+	public String getApeMaternoCli(){ return apeMaternoCli; }
 
-    public int getUserMod() {
-        return userMod;
-    }
+	public void setApeMaternoCli(String apeMaternoCli){this.apeMaternoCli = apeMaternoCli;}
 
-    public void setUserMod(int userMod) {
-        this.userMod = userMod;
-    }
+	public String getUbicacionCli(){ return ubicacionCli; }
 
-    public UsuarioPojo getUsuario() {
-        return usuario;
-    }
+	public void setUbicacionCli(String ubicacionCli){this.ubicacionCli = ubicacionCli;}
 
-    public void setUsuario(UsuarioPojo usuario) {
-        this.usuario = usuario;
-    }
+	public String getEmailCli(){ return emailCli; }
 
-    public DistrictPojo getDistrito() {
-        return distrito;
-    }
+	public void setEmailCli(String emailCli){this.emailCli = emailCli;}
 
-    public void setDistrito(DistrictPojo distrito) {
-        this.distrito = distrito;
-    }
+	public String getCelularCli(){ return celularCli; }
+
+	public void setCelularCli(String celularCli){this.celularCli = celularCli;}
+
+	public String getImgCli(){ return imgCli; }
+
+	public void setImgCli(String imgCli){this.imgCli = imgCli;}
+
+	public String getImgBackCli(){ return imgBackCli; }
+
+	public void setImgBackCli(String imgBackCli){this.imgBackCli = imgBackCli;}
+
+	public Date getFechaMod(){ return fechaMod; }
+
+	public void setFechaMod(Date fechaMod){this.fechaMod = fechaMod;}
+
+	public int getUserMod(){ return userMod; }
+
+	public void setUserMod(int userMod){this.userMod = userMod;}
+
+	public int getIdEstado(){ return idEstado; }
+
+	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
+
 }
