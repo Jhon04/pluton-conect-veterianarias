@@ -16,6 +16,9 @@ public class Main {
     static tabla tablaByService = new tabla();
     static tabla tablaByRepository = new tabla();
     static tabla tablaByController = new tabla();
+
+    static String enter = System.lineSeparator();
+    static String twoEnters = System.lineSeparator() + System.lineSeparator();
     static String stringTablaBd = "";
 
     static String URL_INTO_PROYECT = "/pluton-conect-veterianarias/src/main/java/com/pluton/veterianaria/";
@@ -71,7 +74,7 @@ public class Main {
     }
 
     public static void configurarUrlBasePorUsuario(){
-        // Ivan //rubif //roomm
+        //Ivan //rubif //roomm
         String username = System.getProperty("user.name");
 
         if(username.equals("Ivan"))
@@ -83,7 +86,7 @@ public class Main {
         if(username.equals("roomm"))
             URL_BASE = "D:/ProyectoTesis";
 
-        URL_BASE += URL_BASE + URL_INTO_PROYECT;
+        URL_BASE += URL_INTO_PROYECT;
     }
 
     public static void generarArchivos(){
@@ -164,37 +167,68 @@ public class Main {
 
         tablaByController.setNombreClase(tablaByEntidad.getNombreClase() + "Controller");
 
+        String nomClasPojo =  tablaByPojo.getNombreClase();
+        String nomTipVarIdPojo = tablaByPojo.getColumnas().get(0).getTipoDeDato();
+        String nomVarIdPojo =  tablaByPojo.getColumnas().get(0).getNombreVariable();
+
+        String nomClasRepoDomain = tablaByRepositoryDomain.getNombreClase();
+        String nomClasService = tablaByService.getNombreClase();
+        String nomClasRepo = tablaByRepository.getNombreClase();
+        String nomClasEntidad = tablaByEntidad.getNombreClase();
+        String nomClasCrudRepo = tablaByCrudRepository.getNombreClase();
+        String nomClasMapper = tablaByMapper.getNombreClase();
+
         /*---------------------------*/
         /*          HEADER           */
         /*---------------------------*/
         String claseHeader =
-                "package com.pluton.veterianaria.web.controller;" + System.lineSeparator() + System.lineSeparator() +
+                "package com.pluton.veterianaria.web.controller;" + twoEnters +
 
-                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() +
-                "import com.pluton.veterianaria.domain.services." + tablaByService.getNombreClase() + ";" + System.lineSeparator() +
+                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + enter +
+                "import com.pluton.veterianaria.domain.services." + tablaByService.getNombreClase() + ";" + enter +
 
-                "import org.springframework.beans.factory.annotation.Autowired;" + System.lineSeparator() +
-                "import org.springframework.web.bind.annotation.*;" + System.lineSeparator() +
+                "import org.springframework.beans.factory.annotation.Autowired;" + enter +
+                "import org.springframework.web.bind.annotation.*;" + twoEnters +
+                "import java.util.List;" + enter +
+                "import java.util.Optional;" + twoEnters +
 
-                "@RestController" + System.lineSeparator() +
-                "@RequestMapping(\"/" + lowerCaseTexto(tablaByEntidad.getNombreClase())  + "\")" + System.lineSeparator() +
-                "public class " + tablaByController.getNombreClase() + " {" + System.lineSeparator();
+
+                "@RestController" + enter +
+                "@RequestMapping(\"/" + lowerCaseTexto(tablaByEntidad.getNombreClase())  + "\")" + enter +
+                "public class " + tablaByController.getNombreClase() + " {" + enter;
 
         /*---------------------------*/
         /*           BODY            */
         /*---------------------------*/
         String claseBody = "";
-        claseBody += "\t" + "@Autowired" + System.lineSeparator();
-        claseBody += "\t" + "private " + tablaByService.getNombreClase() + " " + minusculaPrimeraLetra(tablaByService.getNombreClase()) + ";" + System.lineSeparator() + System.lineSeparator();
+        claseBody += "\t" + "@Autowired" + enter;
+        claseBody += "\t" + "private " + tablaByService.getNombreClase() + " " + minusculaPrimeraLetra(tablaByService.getNombreClase()) + ";" + twoEnters;
 
+        claseBody += "\t" + "@GetMapping(\"all\")" + enter;
+        claseBody += "\t" + "public List<" + nomClasPojo + "> getAll(){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasService) + ".getAll();" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@GetMapping(\"/{id}\")" + enter;
+        claseBody += "\t" + "public Optional<" + nomClasPojo + "> get" + nomClasEntidad + "(@PathVariable(\"id\") "+ nomTipVarIdPojo + " " + nomVarIdPojo +"){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasService) + ".get" + nomClasPojo + "(" + nomVarIdPojo + ");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@PostMapping(\"/save\")" + enter;
+        claseBody += "\t" + "public " + nomClasPojo + " save(@RequestBody " + nomClasPojo + " " + minusculaPrimeraLetra(nomClasPojo) + "){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasService) + ".save(" + minusculaPrimeraLetra(nomClasPojo) + ");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@DeleteMapping(\"/delete/{id}\")" + enter;
+        claseBody += "\t" + "public boolean delete(@PathVariable(\"id\")" + nomTipVarIdPojo + " " + nomVarIdPojo + "){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasService) + ".delete(" + nomVarIdPojo + ");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
         /*---------------------------*/
         /*          FOOTER           */
         /*---------------------------*/
         String claseFooter = "}";
 
-        return  claseHeader + System.lineSeparator() +
-                claseBody + System.lineSeparator() +
-                claseFooter;
+        return  claseHeader + claseBody + claseFooter;
     }
 
 
@@ -231,42 +265,75 @@ public class Main {
 
         tablaByRepository.setNombreClase(tablaByEntidad.getNombreClase() + "Repository");
 
+        String nomClasPojo =  tablaByPojo.getNombreClase();
+        String nomTipVarIdPojo = tablaByPojo.getColumnas().get(0).getTipoDeDato();
+        String nomVarIdPojo =  tablaByPojo.getColumnas().get(0).getNombreVariable();
+
+        String nomClasRepoDomain = tablaByRepositoryDomain.getNombreClase();
+        String nomClasService = tablaByService.getNombreClase();
+        String nomClasRepo = tablaByRepository.getNombreClase();
+        String nomClasEntidad = tablaByEntidad.getNombreClase();
+        String nomClasCrudRepo = tablaByCrudRepository.getNombreClase();
+        String nomClasMapper = tablaByMapper.getNombreClase();
+
         /*---------------------------*/
         /*          HEADER           */
         /*---------------------------*/
-        String claseHeader =
-                "package com.pluton.veterianaria.persistencia;" + System.lineSeparator() + System.lineSeparator() +
+        String claseHeader = "";
+        claseHeader+= "package com.pluton.veterianaria.persistencia;" + twoEnters;
 
-                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() +
-                "import com.pluton.veterianaria.domain.repository." + tablaByRepositoryDomain.getNombreClase() + ";" + System.lineSeparator() +
-                "import com.pluton.veterianaria.persistencia.crud." + tablaByCrudRepository.getNombreClase() + ";" + System.lineSeparator() +
-                "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() +
-                "import com.pluton.veterianaria.persistencia.mapper." + tablaByMapper.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
+        claseHeader+= "import com.pluton.veterianaria.domain." + nomClasPojo + ";" + enter;
+        claseHeader+= "import com.pluton.veterianaria.domain.repository." + nomClasRepoDomain + ";" + enter;
+        claseHeader+= "import com.pluton.veterianaria.persistencia.crud." + tablaByCrudRepository.getNombreClase() + ";" + enter;
+        claseHeader+= "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + enter;
+        claseHeader+= "import com.pluton.veterianaria.persistencia.mapper." + tablaByMapper.getNombreClase() + ";" + twoEnters;
 
-                "import org.springframework.beans.factory.annotation.Autowired;" + System.lineSeparator() +
-                "import org.springframework.stereotype.Repository;" + System.lineSeparator() +
+        claseHeader+= "import org.springframework.beans.factory.annotation.Autowired;" + enter;
+        claseHeader+= "import org.springframework.stereotype.Repository;" + enter;
+        claseHeader+= "import java.util.List;" + enter;
+        claseHeader+= "import java.util.Optional;" + twoEnters;
 
-                "@Repository" + System.lineSeparator() +
-                "public class " + tablaByRepository.getNombreClase() + " implements " + tablaByRepositoryDomain.getNombreClase() + " {" + System.lineSeparator();
+
+        claseHeader+= "@Repository" + enter;
+        claseHeader+= "public class " + nomClasRepo + " implements " + nomClasRepoDomain + " {" + twoEnters;
 
         /*---------------------------*/
         /*           BODY            */
         /*---------------------------*/
         String claseBody = "";
-        claseBody += "\t" + "@Autowired" + System.lineSeparator();
-        claseBody += "\t" + "private " + tablaByCrudRepository.getNombreClase() + " " + minusculaPrimeraLetra(tablaByCrudRepository.getNombreClase()) + ";" + System.lineSeparator() + System.lineSeparator();
+        claseBody += "\t" + "@Autowired" + enter;
+        claseBody += "\t" + "private " + nomClasCrudRepo + " " + minusculaPrimeraLetra(nomClasCrudRepo) + ";" + twoEnters;
 
-        claseBody += "\t" + "@Autowired" + System.lineSeparator();
-        claseBody += "\t" + "private " + tablaByMapper.getNombreClase() + " " + minusculaPrimeraLetra(tablaByMapper.getNombreClase()) + ";" + System.lineSeparator();
+        claseBody += "\t" + "@Autowired" + enter;
+        claseBody += "\t" + "private " + nomClasMapper + " " + minusculaPrimeraLetra(nomClasMapper) + ";" + twoEnters;
 
+        claseBody += "\t" + "@Override" + enter;
+        claseBody += "\t" + "public List<" + nomClasPojo + "> getAll() {" + enter;
+        claseBody += "\t\t" + "List<" + nomClasEntidad + "> list" + nomClasEntidad + " = (List<" + nomClasEntidad + ">) "  + minusculaPrimeraLetra(nomClasCrudRepo) + ".findAll();" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasMapper) + ".toList" + nomClasPojo + "(list" + nomClasEntidad +");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@Override" + enter;
+        claseBody += "\t" + "public Optional<" + nomClasPojo + "> get" + nomClasPojo + "(" + nomTipVarIdPojo + " " + nomVarIdPojo +"){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasCrudRepo) + ".findById(" + nomVarIdPojo + ").map(" + minusculaPrimeraLetra(nomClasEntidad) + " -> " + minusculaPrimeraLetra(nomClasMapper) + ".to" + nomClasPojo + "(" + minusculaPrimeraLetra(nomClasEntidad) + "));" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@Override" + enter;
+        claseBody += "\t" + "public " + nomClasPojo + " save(" + nomClasPojo + " " + minusculaPrimeraLetra(nomClasPojo) + "){" + enter;
+        claseBody += "\t\t" + nomClasEntidad + " " + minusculaPrimeraLetra(nomClasEntidad) + " = " + minusculaPrimeraLetra(nomClasMapper) + ".to" + nomClasEntidad + "(" + minusculaPrimeraLetra(nomClasPojo) +");" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasMapper) + ".to" + nomClasPojo + "(" + minusculaPrimeraLetra(nomClasCrudRepo) + ".save(" + minusculaPrimeraLetra(nomClasEntidad) +"));" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "@Override" + enter;
+        claseBody += "\t" + "public void delete (" + nomTipVarIdPojo + " " + nomVarIdPojo + "){" + enter;
+        claseBody += "\t\t" + minusculaPrimeraLetra(nomClasCrudRepo) + ".deleteById(" + nomVarIdPojo +");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
         /*---------------------------*/
         /*          FOOTER           */
         /*---------------------------*/
         String claseFooter = "}";
 
-        return  claseHeader + System.lineSeparator() +
-                claseBody + System.lineSeparator() +
-                claseFooter;
+        return  claseHeader + claseBody + claseFooter;
     }
 
     /*----------------------------------*/
@@ -299,36 +366,63 @@ public class Main {
 
         tablaByService.setNombreClase(tablaByEntidad.getNombreClase() + "Service");
 
+        String nomClasPojo =  tablaByPojo.getNombreClase();
+        String nomTipVarIdPojo = tablaByPojo.getColumnas().get(0).getTipoDeDato();
+        String nomVarIdPojo =  tablaByPojo.getColumnas().get(0).getNombreVariable();
+
+        String nomClasRepoDomain = tablaByRepositoryDomain.getNombreClase();
+        String nomClasService = tablaByService.getNombreClase();
+
         /*---------------------------*/
         /*          HEADER           */
         /*---------------------------*/
-        String claseHeader =
-                "package com.pluton.veterianaria.domain.services;" + System.lineSeparator() + System.lineSeparator() +
+        String claseHeader = "";
+        claseHeader += "package com.pluton.veterianaria.domain.services;" + twoEnters;
 
-                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
-                "import com.pluton.veterianaria.domain.repository." + tablaByRepositoryDomain.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
+        claseHeader += "import com.pluton.veterianaria.domain." + nomClasPojo + ";" + twoEnters;
+        claseHeader += "import com.pluton.veterianaria.domain.repository." + nomClasRepoDomain + ";" + twoEnters;
 
-                "import org.springframework.beans.factory.annotation.Autowired;" + System.lineSeparator() +
-                "import org.springframework.stereotype.Service;" + System.lineSeparator() + System.lineSeparator() +
+        claseHeader += "import org.springframework.beans.factory.annotation.Autowired;" + enter;
+        claseHeader += "import org.springframework.stereotype.Service;" + twoEnters;
+        claseHeader += "import java.util.List;" + enter;
+        claseHeader += "import java.util.Optional;" + twoEnters;
 
-                "@Service" + System.lineSeparator() +
-                "public class " + tablaByService.getNombreClase() + " {" + System.lineSeparator();
+
+        claseHeader += "@Service" + enter;
+        claseHeader += "public class " + nomClasService + " {" + twoEnters;
 
         /*---------------------------*/
         /*           BODY            */
         /*---------------------------*/
         String claseBody = "";
-        claseBody += "\t" + "@Autowired" + System.lineSeparator();
-        claseBody += "\t" + "private " + tablaByRepositoryDomain.getNombreClase() + " " + minusculaPrimeraLetra(tablaByRepositoryDomain.getNombreClase()) + ";" +System.lineSeparator();
 
+        claseBody += "\t" + "@Autowired" + enter;
+        claseBody += "\t" + "private " + nomClasRepoDomain + " " + minusculaPrimeraLetra(nomClasRepoDomain) + ";" + twoEnters;
+
+        claseBody += "\t" + "public List<" + nomClasPojo + "> getAll(){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasRepoDomain) + ".getAll();" + enter;
+        claseBody += "\t" + "}" + System.lineSeparator() + twoEnters;
+
+        claseBody += "\t" + "public Optional<" + nomClasPojo + "> get" + nomClasPojo + "("+ nomTipVarIdPojo + " " + nomVarIdPojo +")" +"{" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasRepoDomain) + ".get" + nomClasPojo + "(" + nomVarIdPojo + ");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "public " + nomClasPojo + " save(" + nomClasPojo + " " + minusculaPrimeraLetra(nomClasPojo) + "){" + enter;
+        claseBody += "\t\t" + "return " + minusculaPrimeraLetra(nomClasRepoDomain) + ".save(" + minusculaPrimeraLetra(nomClasPojo) +");" + enter;
+        claseBody += "\t" + "}" + twoEnters;
+
+        claseBody += "\t" + "public boolean delete(" + nomTipVarIdPojo + " " + nomVarIdPojo + "){" + enter;
+        claseBody += "\t\t" + "return " + "get" + nomClasPojo + "(" + nomVarIdPojo + ").map("+ minusculaPrimeraLetra(nomClasPojo) + "-> {" + enter;
+        claseBody += "\t\t\t" + minusculaPrimeraLetra(nomClasRepoDomain) + ".delete("+ nomVarIdPojo +");" + enter;
+        claseBody += "\t\t\t" + "return true;" + enter;
+        claseBody += "\t\t" + "}).orElse(false);" + enter;
+        claseBody += "\t" + "}" + twoEnters;
         /*---------------------------*/
         /*          FOOTER           */
         /*---------------------------*/
         String claseFooter = "}";
 
-        return  claseHeader + System.lineSeparator() +
-                claseBody + System.lineSeparator() +
-                claseFooter;
+        return  claseHeader + claseBody + claseFooter;
     }
 
     /*----------------------------------*/
@@ -360,20 +454,32 @@ public class Main {
 
         tablaByRepositoryDomain.setNombreClase(tablaByEntidad.getNombreClase() + "RepositoryDomain");
 
+
         /*---------------------------*/
         /*          HEADER           */
         /*---------------------------*/
-        String claseHeader =
-                "package com.pluton.veterianaria.domain.repository;" + System.lineSeparator() + System.lineSeparator() +
+        String claseHeader = "";
+        claseHeader += "package com.pluton.veterianaria.domain.repository;" + twoEnters;
+        claseHeader += "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + twoEnters;
+        claseHeader += "import java.util.List;" + enter;
+        claseHeader += "import java.util.Optional;" + twoEnters;
 
-                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
-
-                "public interface " + tablaByRepositoryDomain.getNombreClase() + " {" + System.lineSeparator();
+        claseHeader += "public interface " + tablaByRepositoryDomain.getNombreClase() + " {" + enter;
 
         /*---------------------------*/
         /*           BODY            */
         /*---------------------------*/
         String claseBody = "";
+
+        /*----> METODOS */
+        String nombClasPojo =  tablaByPojo.getNombreClase();
+        String nombTipVarIdPojo = tablaByPojo.getColumnas().get(0).getTipoDeDato();
+        String nombVarIdPojo =  tablaByPojo.getColumnas().get(0).getNombreVariable();
+
+        claseBody += "\t" + "List<" + nombClasPojo + "> getAll();" + System.lineSeparator();
+        claseBody += "\t" + "Optional<" + nombClasPojo + "> get" + nombClasPojo + "(" + nombTipVarIdPojo + " " + nombVarIdPojo +");"+ enter;
+        claseBody += "\t" + nombClasPojo + " save("+ nombClasPojo + " " + minusculaPrimeraLetra(nombClasPojo)  +");" + enter;
+        claseBody += "\t" + "void delete("+ nombTipVarIdPojo + " " + minusculaPrimeraLetra(nombVarIdPojo) +");" + enter;
 
         /*---------------------------*/
         /*          FOOTER           */
@@ -870,7 +976,6 @@ public class Main {
             return originalString;
         }
     }
-
     public static String uppercaseTexto(String texto){
         String originalString = "";
 
@@ -884,8 +989,6 @@ public class Main {
             return originalString;
         }
     }
-
-
     public static String lowerCaseTexto(String texto){
         String originalString = "";
         try {
@@ -898,7 +1001,6 @@ public class Main {
             return originalString;
         }
     }
-
     public static String formatTitle(String texto){
         if(texto.contains("_")) {
             String originalString = texto;
