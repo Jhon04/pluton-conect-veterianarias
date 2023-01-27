@@ -58,7 +58,9 @@ public class Empresa implements Serializable {
 	private Integer fechaMod;
 
 
-	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	// Un Usuario pertenece a una *Empresa
+	// Una Empresa solo puede tener un *Usuario
+	@OneToOne
 	@JoinColumn(name = "id_usuario", insertable = false, updatable = false)
 	private Usuario usuario;
 
@@ -78,6 +80,7 @@ public class Empresa implements Serializable {
 			joinColumns = @JoinColumn(name = "id_empresa"),
 			inverseJoinColumns = @JoinColumn(name = "id_comentario"))
 	private List<Comentario> comentarios;
+
 	public Empresa() {}
 
 	public Integer getIdEmpresa(){ return idEmpresa; }
@@ -171,4 +174,6 @@ public class Empresa implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+
+
 }

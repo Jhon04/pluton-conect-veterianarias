@@ -16,8 +16,8 @@ public interface ClienteCrudRepository extends CrudRepository<Cliente, Integer> 
     */
 
     /* ini - Query Method's */
-    List<Cliente> findByIdDistritoOrderByNombreAsc(int idDistrito);
+    List<Cliente> findByIdDistritoOrderByNombreCliAsc(int idDistrito);
 
-    Optional<List<Cliente>> findByCelularLessThanAndEstado(int celular, boolean estado);
+    Optional<List<Cliente>> findByCelularCliLessThanAndEstado(int celular, boolean estado);
     /* fin - Query Method's */
 }
