@@ -147,4 +147,28 @@ public class Empresa implements Serializable {
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 }

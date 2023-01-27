@@ -33,6 +33,12 @@ public interface EmpresaMapper {
 	EmpresaPojo toEmpresaPojo(Empresa empresa);
 	List<EmpresaPojo> toListEmpresaPojo(List<Empresa> listempresa);
 	@InheritInverseConfiguration
+	@Mappings({
+			@Mapping(target = "comentarios", ignore = true),
+			@Mapping(target = "usuario", ignore = true),
+			@Mapping(target = "distrito", ignore = true),
+			@Mapping(target = "estado", ignore = true),
+	})
 	Empresa toEmpresa(EmpresaPojo empresapojo);
 	List<Empresa> toListEmpresa(List<EmpresaPojo> listempresapojo);
 

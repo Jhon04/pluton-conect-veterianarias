@@ -136,4 +136,27 @@ public class Cliente implements Serializable {
 
 	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 }

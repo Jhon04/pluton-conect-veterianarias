@@ -28,15 +28,15 @@ public interface ClienteMapper {
 		@Mapping(source = "imgCli", target = "imgCli"),
 		@Mapping(source = "imgBackCli", target = "imgBackCli"),
 		@Mapping(source = "fechaMod", target = "fechaMod"),
-		@Mapping(source = "userMod", target = "userMod"),
-		@Mapping(source = "distrito"    , target = "distrito")
+		@Mapping(source = "userMod", target = "userMod")
 	})
 	ClientePojo toClientePojo(Cliente cliente);
 	List<ClientePojo> toListClientePojo(List<Cliente> listcliente);
 	@InheritInverseConfiguration
 	@Mappings({
 			@Mapping(target = "usuario", ignore = true),
-			@Mapping(target = "estado", ignore = true)
+			@Mapping(target = "estado", ignore = true),
+			@Mapping(target = "distrito", ignore = true)
 	})
 	Cliente toCliente(ClientePojo clientepojo);
 	List<Cliente> toListCliente(List<ClientePojo> listclientepojo);
