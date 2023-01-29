@@ -19,6 +19,8 @@ public interface ComentarioMapper {
 		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "tituloCom", target = "tituloCom"),
 		@Mapping(source = "comentario", target = "comentario"),
+		@Mapping(source = "fechaCom", target = "fechaCom"),
+		@Mapping(source = "calificacionCom", target = "calificacionCom"),
 	})
 	ComentarioPojo toComentarioPojo(Comentario comentario);
 	List<ComentarioPojo> toListComentarioPojo(List<Comentario> listcomentario);

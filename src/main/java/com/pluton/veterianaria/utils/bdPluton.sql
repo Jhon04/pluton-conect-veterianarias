@@ -33,7 +33,7 @@ CREATE TABLE COMENTARIO (
 
     titulo_com varchar(120) NOT NULL,
     comentario TEXT NOT NULL,
-    fecha_com DATE NOT NULL,
+    fecha_com DATETIME NOT NULL,
     calificacion_com CHAR(1) NOT NULL
 );
 
@@ -61,8 +61,11 @@ CREATE TABLE DISTRITO (
 );
 
 CREATE TABLE DET_EMPRESA_COMENTARIO (
+	id_det_empresa_comentario INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 	id_empresa INT NOT NULL,
-    id_comentario INT NOT NULL
+    id_comentario INT NOT NULL,
+
+    id_estado INT NOT NULL
 );
 
 CREATE TABLE EMPRESA (
@@ -85,9 +88,8 @@ CREATE TABLE EMPRESA (
     calificacion_emp CHAR(1) NOT NULL,
     verificacion_emp BOOLEAN NOT NULL,
     fecha_mod DATE,
-    user_mod INT,
+    user_mod INT
 );
-
 
 /*---------------------------*/
 /*    TABLAS @RubiFalconi    */
@@ -98,7 +100,7 @@ CREATE TABLE USUARIO (
 	id_estado INT NOT NULL,
 
 	email_usu VARCHAR(255) NOT NULL,
-	password_usu VARCHAR(32) NOT NULL,
+	password_usu VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE TIPO_USUARIO (
@@ -128,7 +130,7 @@ CREATE TABLE SERVICIO (
 	descripcion_ser VARCHAR(255) NOT NULL,
 	icon_ser VARCHAR(50) NOT NULL,
 	duracion_ser VARCHAR(10) NOT NULL,
-	precio_ser DECIMAL(6,2) NOT NULL,
+	precio_ser DECIMAL(6,2) NOT NULL
 );
 
 CREATE TABLE TIPO_SERVICIO (
@@ -138,14 +140,14 @@ CREATE TABLE TIPO_SERVICIO (
 	nombre_tip_serv VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE RESERVA_ATENCION (
+CREATE TABLE CITA_RESERVA_ATENCION (
     id_cita_reserva_atencion INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_cliente INT NOT NULL,
     id_estado INT NOT NULL,
 
     fecha_cit DATE NOT NULL,
     hora_ini_cit DATETIME NOT NULL,
-    hora_fin_cit DATETIME NOT NULL,
+    hora_fin_cit DATETIME NOT NULL
 );
 
 CREATE TABLE DET_RESERVA_ATENCION_SERVICIO (
@@ -196,12 +198,13 @@ CREATE TABLE RAZA (
     id_raza INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_estado INT NOT NULL,
 
-    nombre_raz VARCHAR(255) NOT NULL,
+    nombre_raz VARCHAR(255) NOT NULL
 );
 
 
 
 CREATE TABLE DET_CLIENTE_MASCOTA (
+	id_det_cliente_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
     id_mascota INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     id_cliente INT NOT NULL
 );

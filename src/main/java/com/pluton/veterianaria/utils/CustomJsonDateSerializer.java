@@ -16,6 +16,7 @@ public class CustomJsonDateSerializer extends JsonSerializer<Date> {
 			throws IOException, JsonProcessingException {
 		// ANGULAR
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+
 		// FLEX
 		//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		String formattedDate = formatter.format(value);

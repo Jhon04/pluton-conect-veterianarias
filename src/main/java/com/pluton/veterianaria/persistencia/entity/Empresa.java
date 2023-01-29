@@ -49,13 +49,16 @@ public class Empresa implements Serializable {
 	private String ubicacionEmp;
 
 	@Column(name = "calificacion_emp")
-	private Boolean calificacionEmp;
+	private String calificacionEmp;
 
 	@Column(name = "verificacion_emp")
-	private Date verificacionEmp;
+	private Boolean verificacionEmp;
 
 	@Column(name = "fecha_mod")
-	private Integer fechaMod;
+	private Date fechaMod;
+
+	@Column(name = "user_mod")
+	private Integer userMod;
 
 
 	// Un Usuario pertenece a una *Empresa
@@ -75,14 +78,15 @@ public class Empresa implements Serializable {
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
 
+	/*
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "empresa_comentario",
+	@JoinTable(name = "det_empresa_comentario",
 			joinColumns = @JoinColumn(name = "id_empresa"),
 			inverseJoinColumns = @JoinColumn(name = "id_comentario"))
 	private List<Comentario> comentarios;
+	*/
 
 	public Empresa() {}
-
 	public Integer getIdEmpresa(){ return idEmpresa; }
 
 	public void setIdEmpresa(Integer idEmpresa){this.idEmpresa = idEmpresa;}
@@ -131,18 +135,23 @@ public class Empresa implements Serializable {
 
 	public void setUbicacionEmp(String ubicacionEmp){this.ubicacionEmp = ubicacionEmp;}
 
-	public Boolean getCalificacionEmp(){ return calificacionEmp; }
+	public String getCalificacionEmp(){ return calificacionEmp; }
 
-	public void setCalificacionEmp(Boolean calificacionEmp){this.calificacionEmp = calificacionEmp;}
+	public void setCalificacionEmp(String calificacionEmp){this.calificacionEmp = calificacionEmp;}
 
-	public Date getVerificacionEmp(){ return verificacionEmp; }
+	public Boolean getVerificacionEmp(){ return verificacionEmp; }
 
-	public void setVerificacionEmp(Date verificacionEmp){this.verificacionEmp = verificacionEmp;}
+	public void setVerificacionEmp(Boolean verificacionEmp){this.verificacionEmp = verificacionEmp;}
 
-	public Integer getFechaMod(){ return fechaMod; }
+	public Date getFechaMod(){ return fechaMod; }
 
-	public void setFechaMod(Integer fechaMod){this.fechaMod = fechaMod;}
+	public void setFechaMod(Date fechaMod){this.fechaMod = fechaMod;}
 
+	public Integer getUserMod(){ return userMod; }
+
+	public void setUserMod(Integer userMod){this.userMod = userMod;}
+
+	/*
 	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
@@ -150,6 +159,7 @@ public class Empresa implements Serializable {
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
 	}
+	 */
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -174,6 +184,4 @@ public class Empresa implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
-
 }

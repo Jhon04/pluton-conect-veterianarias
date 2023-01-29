@@ -12,4 +12,6 @@ public interface EmpresaRepositoryDomain {
 	EmpresaPojo save(EmpresaPojo empresaPojo);
 	void delete(int idEmpresa);
 
+	EmpresaPojo saveComentario(EmpresaPojo empresaPojo);
+
 }

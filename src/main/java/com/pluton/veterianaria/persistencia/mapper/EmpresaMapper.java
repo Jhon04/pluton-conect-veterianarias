@@ -28,13 +28,13 @@ public interface EmpresaMapper {
 		@Mapping(source = "ubicacionEmp", target = "ubicacionEmp"),
 		@Mapping(source = "calificacionEmp", target = "calificacionEmp"),
 		@Mapping(source = "verificacionEmp", target = "verificacionEmp"),
-		@Mapping(source = "fechaMod", target = "fechaMod"),
+		@Mapping(source = "fechaMod", target = "fechaMod")
 	})
 	EmpresaPojo toEmpresaPojo(Empresa empresa);
 	List<EmpresaPojo> toListEmpresaPojo(List<Empresa> listempresa);
 	@InheritInverseConfiguration
 	@Mappings({
-			@Mapping(target = "comentarios", ignore = true),
+
 			@Mapping(target = "usuario", ignore = true),
 			@Mapping(target = "distrito", ignore = true),
 			@Mapping(target = "estado", ignore = true),

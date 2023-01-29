@@ -1,6 +1,13 @@
 package com.pluton.veterianaria.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
+import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
+
 import java.util.Date;
+import java.util.List;
+
 public class EmpresaPojo {
 
 	private int idEmpresa;
@@ -27,12 +34,17 @@ public class EmpresaPojo {
 
 	private String ubicacionEmp;
 
-	private boolean calificacionEmp;
+	private String calificacionEmp;
 
-	private Date verificacionEmp;
+	private boolean verificacionEmp;
 
-	private int fechaMod;
+	private Date fechaMod;
 
+	private int userMod;
+
+	/*
+	private List<ComentarioPojo> comentarios;
+	 */
 
 	public EmpresaPojo() { }
 	public int getIdEmpresa(){ return idEmpresa; }
@@ -83,16 +95,33 @@ public class EmpresaPojo {
 
 	public void setUbicacionEmp(String ubicacionEmp){this.ubicacionEmp = ubicacionEmp;}
 
-	public boolean getCalificacionEmp(){ return calificacionEmp; }
+	public String getCalificacionEmp(){ return calificacionEmp; }
 
-	public void setCalificacionEmp(boolean calificacionEmp){this.calificacionEmp = calificacionEmp;}
+	public void setCalificacionEmp(String calificacionEmp){this.calificacionEmp = calificacionEmp;}
 
-	public Date getVerificacionEmp(){ return verificacionEmp; }
+	public boolean getVerificacionEmp(){ return verificacionEmp; }
 
-	public void setVerificacionEmp(Date verificacionEmp){this.verificacionEmp = verificacionEmp;}
+	public void setVerificacionEmp(boolean verificacionEmp){this.verificacionEmp = verificacionEmp;}
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	public Date getFechaMod(){ return fechaMod; }
+	@JsonDeserialize(using = CustomJsonDateDeserializer.class)
+	public void setFechaMod(Date fechaMod){this.fechaMod = fechaMod;}
 
-	public int getFechaMod(){ return fechaMod; }
+	public int getUserMod(){ return userMod; }
 
-	public void setFechaMod(int fechaMod){this.fechaMod = fechaMod;}
+	public void setUserMod(int userMod){this.userMod = userMod;}
 
+	public boolean isVerificacionEmp() {
+		return verificacionEmp;
+	}
+
+	/*
+	public List<ComentarioPojo> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<ComentarioPojo> comentarios) {
+		this.comentarios = comentarios;
+	}
+	 */
 }

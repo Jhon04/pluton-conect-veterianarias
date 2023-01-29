@@ -1,5 +1,10 @@
 package com.pluton.veterianaria.persistencia.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
+import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,10 +27,17 @@ public class Comentario implements Serializable {
 	private Integer idEstado;
 
 	@Column(name = "titulo_com")
-	private Date tituloCom;
+	private String tituloCom;
 
 	@Column(name = "comentario")
 	private String comentario;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_com")
+	private Date fechaCom;
+
+	@Column(name = "calificacion_com")
+	private String calificacionCom;
 
 
 	// (Many) Un *Cliente puede tener muchos *Comentarios
@@ -40,10 +52,14 @@ public class Comentario implements Serializable {
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
 
+	/*
 	@ManyToMany(mappedBy = "comentarios")
 	private List<Empresa> empresas;
+	 */
+
 
 	public Comentario() {}
+
 	public Integer getIdComentario(){ return idComentario; }
 
 	public void setIdComentario(Integer idComentario){this.idComentario = idComentario;}
@@ -56,12 +72,20 @@ public class Comentario implements Serializable {
 
 	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-	public Date getTituloCom(){ return tituloCom; }
+	public String getTituloCom(){ return tituloCom; }
 
-	public void setTituloCom(Date tituloCom){this.tituloCom = tituloCom;}
+	public void setTituloCom(String tituloCom){this.tituloCom = tituloCom;}
 
 	public String getComentario(){ return comentario; }
 
 	public void setComentario(String comentario){this.comentario = comentario;}
+
+	public Date getFechaCom(){ return fechaCom; }
+
+	public void setFechaCom(Date fechaCom){this.fechaCom = fechaCom;}
+
+	public String getCalificacionCom(){ return calificacionCom; }
+
+	public void setCalificacionCom(String calificacionCom){this.calificacionCom = calificacionCom;}
 
 }

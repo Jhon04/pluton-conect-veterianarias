@@ -29,6 +29,11 @@ public class EmpresaController {
 		return empresaService.save(empresaPojo);
 	}
 
+	@PostMapping("/savecomentario")
+	public EmpresaPojo saveComentario(@RequestBody EmpresaPojo empresaPojo){
+		return empresaService.saveComentario(empresaPojo);
+	}
+
 	@DeleteMapping("/delete/{id}")
 	public boolean delete(@PathVariable("id")int idEmpresa){
 		return empresaService.delete(idEmpresa);

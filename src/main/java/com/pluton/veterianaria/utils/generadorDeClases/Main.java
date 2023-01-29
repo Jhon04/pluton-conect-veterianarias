@@ -29,7 +29,6 @@ public class Main {
     static String archivoAGenerar = "";
 
     public static void main(String[] args) {
-
         try {
             configurarUrlBasePorUsuario();
 
@@ -37,17 +36,33 @@ public class Main {
             /*  ARCHIVO A CREAR (todos, 1      , 2             , 3   , 4               , 5      , 6     , 7         , 8         ) */
             /*  ARCHIVO A CREAR (todos, entidad, crudRepository, pojo, repositoryDomain, service, mapper, repository, controller) */
             /*----------------------------------------------------*/
-            archivoAGenerar = "todos";
+            archivoAGenerar = "entidad";
 
             /*------------------------------------------------------------*/
             /* TABLA DE BASE DE DATOS DE REFERENCIA PARA CREAR EL ARCHIVO */
             /*------------------------------------------------------------*/
-            stringTablaBd = "CREATE TABLE RAZA (\n" +
-                    "    id_raza INT PRIMARY KEY NOT NULL AUTO_INCREMENT,\n" +
-                    "    nombre_raz VARCHAR(255) NOT NULL,\n" +
+            stringTablaBd = "CREATE TABLE EMPRESA (\n" +
+                    "\tid_empresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,\n" +
+                    "    id_usuario INT NOT NULL,\n" +
+                    "    id_distrito INT NOT NULL,\n" +
+                    "    id_estado INT NOT NULL,\n" +
                     "\n" +
-                    "    id_estado INT NOT NULL\n" +
-                    ");";
+                    "    nombre_emp VARCHAR(255) NOT NULL,\n" +
+                    "    descripcion_emp TEXT NOT NULL,\n" +
+                    "    email_emp VARCHAR(255),\n" +
+                    "    celular_emp CHAR(9),\n" +
+                    "\n" +
+                    "    img_back_emp VARCHAR(255),\n" +
+                    "    img_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    direccion_emp VARCHAR(255) NOT NULL,\n" +
+                    "    ubicacion_emp VARCHAR(255) NOT NULL,\n" +
+                    "\n" +
+                    "    calificacion_emp CHAR(1) NOT NULL,\n" +
+                    "    verificacion_emp BOOLEAN NOT NULL,\n" +
+                    "    fecha_mod DATE,\n" +
+                    "    user_mod INT\n" +
+                    ");\n";
 
             generarArchivos();
         } catch (Exception e) {
@@ -167,18 +182,18 @@ public class Main {
         String claseHeader =
                 "package com.pluton.veterianaria.web.controller;" + twoEnters +
 
-                "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + enter +
-                "import com.pluton.veterianaria.domain.services." + tablaByService.getNombreClase() + ";" + enter +
+                        "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + enter +
+                        "import com.pluton.veterianaria.domain.services." + tablaByService.getNombreClase() + ";" + enter +
 
-                "import org.springframework.beans.factory.annotation.Autowired;" + enter +
-                "import org.springframework.web.bind.annotation.*;" + twoEnters +
-                "import java.util.List;" + enter +
-                "import java.util.Optional;" + twoEnters +
+                        "import org.springframework.beans.factory.annotation.Autowired;" + enter +
+                        "import org.springframework.web.bind.annotation.*;" + twoEnters +
+                        "import java.util.List;" + enter +
+                        "import java.util.Optional;" + twoEnters +
 
 
-                "@RestController" + enter +
-                "@RequestMapping(\"/" + lowerCaseTexto(tablaByEntidad.getNombreClase())  + "\")" + enter +
-                "public class " + tablaByController.getNombreClase() + " {" + enter;
+                        "@RestController" + enter +
+                        "@RequestMapping(\"/" + lowerCaseTexto(tablaByEntidad.getNombreClase())  + "\")" + enter +
+                        "public class " + tablaByController.getNombreClase() + " {" + enter;
 
         /*---------------------------*/
         /*           BODY            */
@@ -510,10 +525,10 @@ public class Main {
         String claseHeader =
                 "package com.pluton.veterianaria.persistencia.crud;" + System.lineSeparator() + System.lineSeparator() +
 
-                "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
-                "import org.springframework.data.repository.CrudRepository;" + System.lineSeparator() + System.lineSeparator() +
+                        "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
+                        "import org.springframework.data.repository.CrudRepository;" + System.lineSeparator() + System.lineSeparator() +
 
-                "public interface " +  tablaByCrudRepository.getNombreClase() + " extends CrudRepository<" + tablaByEntidad.getNombreClase() + ", Integer> {" + System.lineSeparator();
+                        "public interface " +  tablaByCrudRepository.getNombreClase() + " extends CrudRepository<" + tablaByEntidad.getNombreClase() + ", Integer> {" + System.lineSeparator();
 
         /*---------------------------*/
         /*           BODY            */
@@ -566,20 +581,20 @@ public class Main {
         /*          HEADER           */
         /*---------------------------*/
         String claseHeader =
-            "package com.pluton.veterianaria.persistencia.mapper;" + System.lineSeparator() + System.lineSeparator() +
+                "package com.pluton.veterianaria.persistencia.mapper;" + System.lineSeparator() + System.lineSeparator() +
 
-            "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() +
-            "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
+                        "import com.pluton.veterianaria.domain." + tablaByPojo.getNombreClase() + ";" + System.lineSeparator() +
+                        "import com.pluton.veterianaria.persistencia.entity." + tablaByEntidad.getNombreClase() + ";" + System.lineSeparator() + System.lineSeparator() +
 
-            "import org.mapstruct.InheritInverseConfiguration;" + System.lineSeparator() +
-            "import org.mapstruct.Mapper;" + System.lineSeparator() +
-            "import org.mapstruct.Mapping;" + System.lineSeparator() +
-            "import org.mapstruct.Mappings;" + System.lineSeparator() + System.lineSeparator() +
-            "import java.util.List;" + System.lineSeparator() +
+                        "import org.mapstruct.InheritInverseConfiguration;" + System.lineSeparator() +
+                        "import org.mapstruct.Mapper;" + System.lineSeparator() +
+                        "import org.mapstruct.Mapping;" + System.lineSeparator() +
+                        "import org.mapstruct.Mappings;" + System.lineSeparator() + System.lineSeparator() +
+                        "import java.util.List;" + System.lineSeparator() +
 
-            System.lineSeparator() +
-            "@Mapper(componentModel = \"spring\", uses = {})" + System.lineSeparator() +
-            "public interface " +  tablaByMapper.getNombreClase() + " {" + System.lineSeparator();
+                        System.lineSeparator() +
+                        "@Mapper(componentModel = \"spring\", uses = {})" + System.lineSeparator() +
+                        "public interface " +  tablaByMapper.getNombreClase() + " {" + System.lineSeparator();
 
         /*---------------------------*/
         /*           BODY            */
@@ -590,30 +605,30 @@ public class Main {
 
         for (ColumnaTabla columna : tablaByPojo.getColumnas()){
             claseBody += "\t\t" + "@Mapping(source = \"" + columna.getNombreVariable() +
-                         "\", target = \"" + columna.getNombreVariable() + "\")," + System.lineSeparator();
+                    "\", target = \"" + columna.getNombreVariable() + "\")," + System.lineSeparator();
         }
         claseBody += "\t" + "})" + System.lineSeparator();
 
         claseBody +=
-            "\t" + tablaByPojo.getNombreClase() + " to" + tablaByPojo.getNombreClase() +
-            "(" + tablaByEntidad.getNombreClase() + " " +
-            lowerCaseTexto(tablaByEntidad.getNombreClase()) + ");" + System.lineSeparator();
+                "\t" + tablaByPojo.getNombreClase() + " to" + tablaByPojo.getNombreClase() +
+                        "(" + tablaByEntidad.getNombreClase() + " " +
+                        lowerCaseTexto(tablaByEntidad.getNombreClase()) + ");" + System.lineSeparator();
         claseBody +=
-            "\t" + "List<" + tablaByPojo.getNombreClase() + "> toList" + tablaByPojo.getNombreClase() +
-            "(List<" + tablaByEntidad.getNombreClase() + "> list" +
-            lowerCaseTexto(tablaByEntidad.getNombreClase()) + ");" + System.lineSeparator();
+                "\t" + "List<" + tablaByPojo.getNombreClase() + "> toList" + tablaByPojo.getNombreClase() +
+                        "(List<" + tablaByEntidad.getNombreClase() + "> list" +
+                        lowerCaseTexto(tablaByEntidad.getNombreClase()) + ");" + System.lineSeparator();
 
 
         claseBody += "\t" + "@InheritInverseConfiguration" + System.lineSeparator();
         claseBody +=
-            "\t" + tablaByEntidad.getNombreClase() + " to" + tablaByEntidad.getNombreClase() +
-            "(" + tablaByPojo.getNombreClase() + " " +
-            lowerCaseTexto(tablaByPojo.getNombreClase()) + ");" + System.lineSeparator();
+                "\t" + tablaByEntidad.getNombreClase() + " to" + tablaByEntidad.getNombreClase() +
+                        "(" + tablaByPojo.getNombreClase() + " " +
+                        lowerCaseTexto(tablaByPojo.getNombreClase()) + ");" + System.lineSeparator();
 
         claseBody +=
-            "\t" + "List<" +tablaByEntidad.getNombreClase() + "> toList" + tablaByEntidad.getNombreClase() +
-            "(List<" + tablaByPojo.getNombreClase() + "> list" +
-            lowerCaseTexto(tablaByPojo.getNombreClase()) + ");" + System.lineSeparator();
+                "\t" + "List<" +tablaByEntidad.getNombreClase() + "> toList" + tablaByEntidad.getNombreClase() +
+                        "(List<" + tablaByPojo.getNombreClase() + "> list" +
+                        lowerCaseTexto(tablaByPojo.getNombreClase()) + ");" + System.lineSeparator();
         /*---------------------------*/
         /*          FOOTER           */
         /*---------------------------*/
@@ -666,10 +681,10 @@ public class Main {
                         .anyMatch(columna -> columna.getTipoDeDato().equals("Date"));
 
         String claseHeader = "";
-            claseHeader += "package com.pluton.veterianaria.domain;" + System.lineSeparator() + System.lineSeparator();
-            if(tieneVarTipDate)
-                claseHeader += "import java.util.Date;" + System.lineSeparator();
-            claseHeader += "public class " +  tablaByPojo.getNombreClase() + " {" + System.lineSeparator();
+        claseHeader += "package com.pluton.veterianaria.domain;" + System.lineSeparator() + System.lineSeparator();
+        if(tieneVarTipDate)
+            claseHeader += "import java.util.Date;" + System.lineSeparator();
+        claseHeader += "public class " +  tablaByPojo.getNombreClase() + " {" + System.lineSeparator();
 
         /*---------------------------*/
         /*           BODY            */
@@ -761,8 +776,8 @@ public class Main {
         /*          HEADER           */
         /*---------------------------*/
         boolean tieneVarTipDate =
-            tablaByEntidad.getColumnas().stream()
-            .anyMatch(columna -> columna.getTipoDeDato().equals("Date"));
+                tablaByEntidad.getColumnas().stream()
+                        .anyMatch(columna -> columna.getTipoDeDato().equals("Date"));
 
         String claseHeader = "";
         claseHeader += "package com.pluton.veterianaria.persistencia.entity;" + System.lineSeparator() + System.lineSeparator();
@@ -821,8 +836,8 @@ public class Main {
         /*--------------------------*/
         for (ColumnaTabla columna : tablaByEntidad.getColumnas()) {
             claseFooter += "\t" + "public " +
-                columna.getTipoDeDato() + " get" + mayusculaPrimeraLetra(columna.getNombreVariable()) +
-                "(){ return " + columna.getNombreVariable() + "; }" + System.lineSeparator() + System.lineSeparator();
+                    columna.getTipoDeDato() + " get" + mayusculaPrimeraLetra(columna.getNombreVariable()) +
+                    "(){ return " + columna.getNombreVariable() + "; }" + System.lineSeparator() + System.lineSeparator();
 
             claseFooter += "\t" + "public void" + " set" + mayusculaPrimeraLetra(columna.getNombreVariable()) +
                     "("+ columna.getTipoDeDato() + " " + columna.getNombreVariable() +")" +
@@ -848,12 +863,13 @@ public class Main {
             fieldsString = fieldsString.replace("PRIMARY", "");
             fieldsString = fieldsString.replace("KEY", "");
             fieldsString = fieldsString.replace("AUTO_INCREMENT", "");
+            fieldsString = fieldsString.replace("UNIQUE", "");
 
             // Patrón para buscar el nombre de la columna
             Pattern columnPattern = Pattern.compile("([a-z_]+)\\s");
 
             // Patrón para buscar el tipo de dato de la columna
-            Pattern dataTypePattern = Pattern.compile("(INT|VARCHAR|CHAR|DATE|BOOLEAN)");
+            Pattern dataTypePattern = Pattern.compile("(INT|VARCHAR|CHAR|TEXT|DATE|BOOLEAN)");
 
             Matcher columnMatcher = columnPattern.matcher(fieldsString);
             Matcher dataTypeMatcher = dataTypePattern.matcher(fieldsString);
@@ -865,9 +881,11 @@ public class Main {
                 if(dataType.equals("INT"))      dataType = "Integer";
                 if(dataType.equals("VARCHAR"))  dataType = "String";
                 if(dataType.equals("CHAR"))     dataType = "String";
+                if(dataType.equals("TEXT"))     dataType = "String";
                 if(dataType.equals("BOOLEAN"))  dataType = "Boolean";
                 if(dataType.equals("DATE"))     dataType = "Date";
 
+                System.out.println("dataType : " + dataType);
                 ColumnaTabla columna = new ColumnaTabla();
                 columna.setNombreColumna(columnName);
                 columna.setNombreVariable(capitalizarTexto(columnName));
@@ -947,9 +965,9 @@ public class Main {
             for (int i = 1; i < modifiedString.length(); i++) {
                 if (modifiedString.charAt(i) == ' ') {
                     modifiedString =
-                        modifiedString.substring(0, i) +
-                        modifiedString.substring(i + 1, i + 2).toUpperCase() +
-                        modifiedString.substring(i + 2);
+                            modifiedString.substring(0, i) +
+                                    modifiedString.substring(i + 1, i + 2).toUpperCase() +
+                                    modifiedString.substring(i + 2);
                 }
             }
 
@@ -994,8 +1012,8 @@ public class Main {
                 if (modifiedString.charAt(i) == ' ') {
                     modifiedString =
                             modifiedString.substring(0, i) +
-                            modifiedString.substring(i + 1, i + 2).toUpperCase() +
-                            modifiedString.substring(i + 2);
+                                    modifiedString.substring(i + 1, i + 2).toUpperCase() +
+                                    modifiedString.substring(i + 2);
                 }
             }
 

@@ -36,4 +36,8 @@ public class EmpresaService {
 		}).orElse(false);
 	}
 
+	public EmpresaPojo saveComentario(EmpresaPojo empresaPojo) {
+		return empresaRepositoryDomain.save(empresaPojo);
+	}
+
 }
