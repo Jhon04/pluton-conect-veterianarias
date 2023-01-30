@@ -21,7 +21,7 @@ public class DetReservaAtencionServicio implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "id_cita_reserva_atencion", insertable = false, updatable = false)
-	private CitaReservaAtencion cita_reserva_atencion;
+	private CitaReservaAtencion citaReservaAtencion;
 
 	@ManyToOne
 	@JoinColumn(name = "id_servicio", insertable = false, updatable = false)
@@ -40,12 +40,12 @@ public class DetReservaAtencionServicio implements Serializable {
 
 	public void setIdServicio(Integer idServicio){this.idServicio = idServicio;}
 
-	public CitaReservaAtencion getCita_reserva_atencion() {
-		return cita_reserva_atencion;
+	public CitaReservaAtencion getCitaReservaAtencion() {
+		return citaReservaAtencion;
 	}
 
-	public void setCita_reserva_atencion(CitaReservaAtencion cita_reserva_atencion) {
-		this.cita_reserva_atencion = cita_reserva_atencion;
+	public void setCitaReservaAtencion(CitaReservaAtencion citaReservaAtencion) {
+		this.citaReservaAtencion = citaReservaAtencion;
 	}
 
 	public Servicio getServicio() {

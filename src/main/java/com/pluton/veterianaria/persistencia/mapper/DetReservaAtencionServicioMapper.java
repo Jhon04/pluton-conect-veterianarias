@@ -21,6 +21,10 @@ public interface DetReservaAtencionServicioMapper {
 	DetReservaAtencionServicioPojo toDetReservaAtencionServicioPojo(DetReservaAtencionServicio detreservaatencionservicio);
 	List<DetReservaAtencionServicioPojo> toListDetReservaAtencionServicioPojo(List<DetReservaAtencionServicio> listdetreservaatencionservicio);
 	@InheritInverseConfiguration
+	@Mappings({
+			@Mapping(target = "servicio", ignore = true),
+			@Mapping(target = "citaReservaAtencion", ignore = true)
+	})
 	DetReservaAtencionServicio toDetReservaAtencionServicio(DetReservaAtencionServicioPojo detreservaatencionserviciopojo);
 	List<DetReservaAtencionServicio> toListDetReservaAtencionServicio(List<DetReservaAtencionServicioPojo> listdetreservaatencionserviciopojo);
 
