@@ -7,6 +7,8 @@ import com.pluton.veterianaria.persistencia.entity.Usuario;
 import com.pluton.veterianaria.persistencia.mapper.UsuarioMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +21,11 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 
 	@Autowired
 	private UsuarioMapper usuarioMapper;
+
+	@Autowired
+	@Lazy
+	private PasswordEncoder passwordEncoder;
+
 
 	@Override
 	public List<UsuarioPojo> getAll() {
@@ -38,7 +45,14 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 	}
 
 	@Override
+	public UsuarioPojo getUsuarioPojoXNombreUsuario(String nombreUsuario) {
+		UsuarioPojo usuario = usuarioMapper.toUsuarioPojo(usuarioCrudRepository.findByEmailUsu(nombreUsuario));
+		return usuario;
+	}
+
+	@Override
 	public UsuarioPojo save(UsuarioPojo usuarioPojo){
+		usuarioPojo.setPasswordUsu(passwordEncoder.encode(usuarioPojo.getPasswordUsu()));
 		Usuario usuario = usuarioMapper.toUsuario(usuarioPojo);
 		return usuarioMapper.toUsuarioPojo(usuarioCrudRepository.save(usuario));
 	}

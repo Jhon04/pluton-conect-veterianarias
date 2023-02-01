@@ -28,6 +28,10 @@ public class UsuarioService {
 		return usuarioRepositoryDomain.getUsuarioPojo(idUsuario);
 	}
 
+	public UsuarioPojo getUsuarioPojoXNombreUsuario(String nombreUsuario){
+		return usuarioRepositoryDomain.getUsuarioPojoXNombreUsuario(nombreUsuario);
+	}
+
 	public UsuarioPojo save(UsuarioPojo usuarioPojo){
 		return usuarioRepositoryDomain.save(usuarioPojo);
 	}
