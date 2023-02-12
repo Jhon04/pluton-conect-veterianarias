@@ -29,7 +29,7 @@ INSERT INTO CLIENTE ( id_usuario, id_distrito, id_estado, direccion_cli, nombre_
     
 SELECT * FROM EMPRESA;
 SELECT * FROM CLIENTE;
-SELECT * FROM USUARIO;
+SELECT * FROM USUARIO; /*W$74573306_*/
 SELECT * FROM COMENTARIO;
 SELECT * FROM DET_EMPRESA_COMENTARIO;
 /*------------------------*/
@@ -50,7 +50,7 @@ INSERT INTO USUARIO(id_tipo_usuario, id_estado, email_usu, password_usu)
 
 INSERT INTO USUARIO(id_tipo_usuario, id_estado, email_usu, password_usu)
 	VALUES(2, 1, 'empresaAnonima@gmail.com', '123456');
-    
+
 INSERT INTO TIPO_USUARIO(id_estado, nombre_tip_usu)
 	VALUES(1, 'CLIENTE');
 
@@ -61,3 +61,7 @@ INSERT INTO TIPO_USUARIO(id_estado, nombre_tip_usu)
 /*--------------------------*/
 INSERT INTO ESTADO(descripcion_estado)
 	VALUES('activo');
+
+
+
+
