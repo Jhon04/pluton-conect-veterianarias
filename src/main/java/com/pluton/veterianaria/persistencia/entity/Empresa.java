@@ -60,6 +60,9 @@ public class Empresa implements Serializable {
 	@Column(name = "user_mod")
 	private Integer userMod;
 
+	@Column(name = "ruc_emp")
+	private String rucEmp;
+
 
 	// Un Usuario pertenece a una *Empresa
 	// Una Empresa solo puede tener un *Usuario
@@ -183,5 +186,13 @@ public class Empresa implements Serializable {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public String getRucEmp() {
+		return rucEmp;
+	}
+
+	public void setRucEmp(String rucEmp) {
+		this.rucEmp = rucEmp;
 	}
 }

@@ -28,7 +28,8 @@ public interface EmpresaMapper {
 		@Mapping(source = "ubicacionEmp", target = "ubicacionEmp"),
 		@Mapping(source = "calificacionEmp", target = "calificacionEmp"),
 		@Mapping(source = "verificacionEmp", target = "verificacionEmp"),
-		@Mapping(source = "fechaMod", target = "fechaMod")
+		@Mapping(source = "fechaMod", target = "fechaMod"),
+		@Mapping(source = "rucEmp", target = "rucEmp")
 	})
 	EmpresaPojo toEmpresaPojo(Empresa empresa);
 	List<EmpresaPojo> toListEmpresaPojo(List<Empresa> listempresa);

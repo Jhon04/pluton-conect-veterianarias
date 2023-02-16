@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.pluton.veterianaria.utils.CustomJsonDateDeserializer;
 import com.pluton.veterianaria.utils.CustomJsonDateSerializer;
 
+import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class EmpresaPojo {
 	private Date fechaMod;
 
 	private int userMod;
+
+	private String rucEmp;
 
 	/*
 	private List<ComentarioPojo> comentarios;
@@ -124,4 +127,12 @@ public class EmpresaPojo {
 		this.comentarios = comentarios;
 	}
 	 */
+
+	public String getRucEmp() {
+		return rucEmp;
+	}
+
+	public void setRucEmp(String rucEmp) {
+		this.rucEmp = rucEmp;
+	}
 }

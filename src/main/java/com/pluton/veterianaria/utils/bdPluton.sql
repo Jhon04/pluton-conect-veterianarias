@@ -74,19 +74,22 @@ CREATE TABLE EMPRESA (
     id_distrito INT NOT NULL,
     id_estado INT NOT NULL,
 
+	ruc_emp VARCHAR(11) NOT NULL,
     nombre_emp VARCHAR(255) NOT NULL,
-    descripcion_emp TEXT NOT NULL,
-    email_emp VARCHAR(255),
+    direccion_emp VARCHAR(255) NOT NULL,
     celular_emp CHAR(9),
+    email_emp VARCHAR(255),
+
+    descripcion_emp TEXT,
 
     img_back_emp VARCHAR(255),
-    img_emp VARCHAR(255) NOT NULL,
+    img_emp VARCHAR(255),
 
-    direccion_emp VARCHAR(255) NOT NULL,
-    ubicacion_emp VARCHAR(255) NOT NULL,
+    ubicacion_emp VARCHAR(255),
 
     calificacion_emp CHAR(1) NOT NULL,
     verificacion_emp BOOLEAN NOT NULL,
+
     fecha_mod DATE,
     user_mod INT
 );
