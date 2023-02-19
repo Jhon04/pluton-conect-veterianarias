@@ -40,8 +40,7 @@ public class AuthController {
 
             // Crea una nueva cookie con el token JWT
             Cookie tokenCookie = new Cookie("jwt", jwt);
-            //tokenCookie.setMaxAge(900); // Expira en 15 minutos
-            tokenCookie.setMaxAge(30);
+            tokenCookie.setMaxAge(900); // Expira en 15 minutos
             tokenCookie.setHttpOnly(true);
             tokenCookie.setSecure(false); // Solo para HTTPS
             response.addCookie(tokenCookie);
