@@ -8,7 +8,9 @@ public class MascotaPojo {
 
 	private int idEstado;
 
-	private int nombreMas;
+	private String nombreMas;
+
+	private int edadMas;
 
 
 	public MascotaPojo() { }
@@ -24,8 +26,12 @@ public class MascotaPojo {
 
 	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
 
-	public int getNombreMas(){ return nombreMas; }
+	public String getNombreMas(){ return nombreMas; }
 
-	public void setNombreMas(int nombreMas){this.nombreMas = nombreMas;}
+	public void setNombreMas(String nombreMas){this.nombreMas = nombreMas;}
+
+	public int getEdadMas(){ return edadMas; }
+
+	public void setEdadMas(int edadMas){this.edadMas = edadMas;}
 
 }

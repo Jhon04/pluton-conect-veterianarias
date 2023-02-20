@@ -20,15 +20,16 @@ public class Mascota implements Serializable {
 	private Integer idEstado;
 
 	@Column(name = "nombre_mas")
-	private Integer nombreMas;
+	private String nombreMas;
+
+	@Column(name = "edad_mas")
+	private Integer edadMas;
 
 
-	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	@OneToOne
 	@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
 	private TipoMascota tipo_mascota;
 
-	// (Many) Un estado lo puede tener muchos clientes
-	// (One) UnCliente solo puede tener un estado
 	@ManyToOne
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
@@ -46,8 +47,12 @@ public class Mascota implements Serializable {
 
 	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-	public Integer getNombreMas(){ return nombreMas; }
+	public String getNombreMas(){ return nombreMas; }
 
-	public void setNombreMas(Integer nombreMas){this.nombreMas = nombreMas;}
+	public void setNombreMas(String nombreMas){this.nombreMas = nombreMas;}
+
+	public Integer getEdadMas(){ return edadMas; }
+
+	public void setEdadMas(Integer edadMas){this.edadMas = edadMas;}
 
 }
