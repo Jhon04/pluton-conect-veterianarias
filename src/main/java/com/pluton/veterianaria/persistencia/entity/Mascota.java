@@ -12,7 +12,7 @@ public class Mascota implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_mascota")
 	private Integer idMascota;
-
+//relacion mascota Raza
 	@Column(name = "id_raza")
 	private Integer idRaza;
 
