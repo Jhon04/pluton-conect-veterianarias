@@ -1,16 +1,21 @@
+/*
 drop database pluton;
 create database pluton;
+*/
 
 
 use pluton;
 
-INSERT INTO EMPRESA ( 	id_usuario, id_distrito, id_estado, nombre_emp, descripcion_emp, 
-						email_emp, celular_emp, img_back_emp, img_emp, direccion_emp, 
-                        ubicacion_emp, calificacion_emp, verificacion_emp, fecha_mod, user_mod) 
+
+
+INSERT INTO EMPRESA ( 	id_usuario, id_distrito, id_estado, ruc_emp, nombre_emp, descripcion_emp,
+						email_emp, celular_emp, img_back_emp, img_emp, direccion_emp,
+                        ubicacion_emp, calificacion_emp, verificacion_emp, fecha_mod, user_mod)
 	VALUES(
-    2, 
-    1, 
+    2,
     1,
+    1,
+    '20482356891',
     'SEGURITY APOSTOL SANTIAGO SOCIEDAD ANONIMA CERRADA',
     'EMPRESA DE NO SE QUE...',
     'empresaAnonima@gmail.com',

@@ -2,6 +2,7 @@ package com.pluton.veterianaria.persistencia.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name ="usuario")
@@ -24,6 +25,9 @@ public class Usuario implements Serializable {
 
 	@Column(name = "password_usu")
 	private String passwordUsu;
+
+	@Column(name = "fech_fin_usu")
+	private Date fechFinUsu;
 
 
 	// (Many) Un *Tipo_de_usuario puede tener multiples usuario
@@ -59,4 +63,11 @@ public class Usuario implements Serializable {
 
 	public void setPasswordUsu(String passwordUsu){this.passwordUsu = passwordUsu;}
 
+	public Date getFechFinUsu() {
+		return fechFinUsu;
+	}
+
+	public void setFechFinUsu(Date fechFinUsu) {
+		this.fechFinUsu = fechFinUsu;
+	}
 }

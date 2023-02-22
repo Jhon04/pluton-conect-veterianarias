@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -34,20 +35,29 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> createToken(@RequestBody AuthenticationRequest request, HttpServletResponse response){
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+            String username = request.getUsername();
+            String password = request.getPassword();
+
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
             UserDetails userDetails = plutonUserDetailsService.loadUserByUsername(request.getUsername());
             String jwt = jwtUtil.generateToken(userDetails);
 
             // Crea una nueva cookie con el token JWT
             Cookie tokenCookie = new Cookie("jwt", jwt);
-            tokenCookie.setMaxAge(900); // Expira en 15 minutos
+            tokenCookie.setPath("/");
+            tokenCookie.setDomain("localhost");
+            tokenCookie.setMaxAge(900);     // Expira en 15 minutos
             tokenCookie.setHttpOnly(true);
-            tokenCookie.setSecure(false); // Solo para HTTPS
+            tokenCookie.setSecure(false);   // ¿Solo para HTTPS?
             response.addCookie(tokenCookie);
 
             return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
         } catch (BadCredentialsException e){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        } catch (Exception ex){
+            System.err.println("ERROR: " + ex);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
+
     }
 }

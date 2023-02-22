@@ -76,7 +76,7 @@ public class Empresa implements Serializable {
 	private Distrito distrito;
 
 	// (Many) Un estado lo puede tener muchos clientes
-	// (One) UnCliente solo puede tener un estado
+	// (One) Un Cliente solo puede tener un estado
 	@ManyToOne
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
