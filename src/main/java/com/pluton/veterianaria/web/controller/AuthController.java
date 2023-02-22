@@ -51,13 +51,15 @@ public class AuthController {
             tokenCookie.setSecure(false);   // ¿Solo para HTTPS?
             response.addCookie(tokenCookie);
 
-            return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
+            // Codigo Original
+            //return new ResponseEntity<>(new AuthenticationResponse(jwt), HttpStatus.OK);
+
+            // Mod 12/02/2023
+            return ResponseEntity.ok()
+                    //.header("Authorization", authorizationHeader)
+                    .body(new AuthenticationResponse(jwt));
         } catch (BadCredentialsException e){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        } catch (Exception ex){
-            System.err.println("ERROR: " + ex);
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
     }
 }

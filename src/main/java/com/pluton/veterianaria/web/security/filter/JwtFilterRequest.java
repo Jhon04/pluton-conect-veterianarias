@@ -54,8 +54,10 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String authorizationHeader = request.getHeader("Authorization");
         Cookie[] cookies = request.getCookies();
         String jwt = null;
+
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("jwt")) {
@@ -75,6 +77,12 @@ public class JwtFilterRequest extends OncePerRequestFilter {
             }
         }
 
+        if(cookies == null){
+            if(authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
+                jwt = authorizationHeader.substring(7);
+            }
+        }
+
         if(jwt != null) {
             String username = jwtUtil.extracUsername(jwt);
 
@@ -89,6 +97,8 @@ public class JwtFilterRequest extends OncePerRequestFilter {
                 }
             }
         }
+
+
 
         filterChain.doFilter(request, response);
     }
