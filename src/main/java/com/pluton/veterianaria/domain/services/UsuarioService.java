@@ -43,4 +43,10 @@ public class UsuarioService {
 		}).orElse(false);
 	}
 
+	public void updateFechaFinUsu(UsuarioPojo usuarioPojo){
+		usuarioRepositoryDomain.updateFechaFinUsu(usuarioPojo);
+	}
+
+
+
 }

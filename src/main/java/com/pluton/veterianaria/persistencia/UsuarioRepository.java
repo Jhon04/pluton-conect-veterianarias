@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +31,8 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 	@Lazy
 	private PasswordEncoder passwordEncoder;
 
+	@PersistenceUnit
+	private EntityManagerFactory entityManagerFactory;
 
 	@Override
 	public List<UsuarioPojo> getAll() {
@@ -60,6 +67,27 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 	@Override
 	public void delete (int idUsuario){
 		usuarioCrudRepository.deleteById(idUsuario);
+	}
+
+	@Override
+	public void updateFechaFinUsu(UsuarioPojo usuarioPojo) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+
+		try {
+			transaction.begin();
+
+			Usuario usuario = entityManager.find(Usuario.class, usuarioPojo.getIdUsuario());
+			usuario.setFechFinUsu(usuarioPojo.getFechFinUsu());
+
+			entityManager.merge(usuario);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

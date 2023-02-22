@@ -19,6 +19,7 @@ public interface UsuarioMapper {
 		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "emailUsu", target = "emailUsu"),
 		@Mapping(source = "passwordUsu", target = "passwordUsu"),
+		@Mapping(source = "fechFinUsu", target = "fechFinUsu"),
 	})
 	UsuarioPojo toUsuarioPojo(Usuario usuario);
 	List<UsuarioPojo> toListUsuarioPojo(List<Usuario> listusuario);

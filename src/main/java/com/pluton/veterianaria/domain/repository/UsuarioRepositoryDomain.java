@@ -14,4 +14,6 @@ public interface UsuarioRepositoryDomain {
 	UsuarioPojo save(UsuarioPojo usuarioPojo);
 	void delete(int idUsuario);
 
+	void updateFechaFinUsu(UsuarioPojo usuarioPojo);
+
 }
