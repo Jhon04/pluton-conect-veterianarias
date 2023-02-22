@@ -15,13 +15,15 @@ public interface TipoMascotaMapper {
 
 	@Mappings({
 		@Mapping(source = "idTipoMascota", target = "idTipoMascota"),
-		@Mapping(source = "idRaza", target = "idRaza"),
 		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "nombreTipMas", target = "nombreTipMas"),
 	})
 	TipoMascotaPojo toTipoMascotaPojo(TipoMascota tipomascota);
 	List<TipoMascotaPojo> toListTipoMascotaPojo(List<TipoMascota> listtipomascota);
 	@InheritInverseConfiguration
+	@Mappings({
+			@Mapping(target = "estado", ignore = true)
+	})
 	TipoMascota toTipoMascota(TipoMascotaPojo tipomascotapojo);
 	List<TipoMascota> toListTipoMascota(List<TipoMascotaPojo> listtipomascotapojo);
 

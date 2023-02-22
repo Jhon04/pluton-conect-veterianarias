@@ -13,8 +13,8 @@ public class TipoMascota implements Serializable {
 	@Column(name = "id_tipo_mascota")
 	private Integer idTipoMascota;
 
-	@Column(name = "id_raza")
-	private Integer idRaza;
+	//@Column(name = "id_raza")
+	//private Integer idRaza;
 
 	@Column(name = "id_estado")
 	private Integer idEstado;
@@ -23,11 +23,13 @@ public class TipoMascota implements Serializable {
 	private String nombreTipMas;
 
 
-	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
+	// (Many) Un Tipo de Mascota puede tener varias Razas
+	// (One) Una Raza puede estar
+	/*@ManyToOne
 	@JoinColumn(name = "id_raza", insertable = false, updatable = false)
-	private Raza raza;
+	private Raza raza;*/
 
-	// (Many) Un estado lo puede tener muchos clientes
+	// (Many) Un estado lo puede tener muchos Tipos De Mascota
 	// (One) UnCliente solo puede tener un estado
 	@ManyToOne
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
@@ -38,10 +40,6 @@ public class TipoMascota implements Serializable {
 
 	public void setIdTipoMascota(Integer idTipoMascota){this.idTipoMascota = idTipoMascota;}
 
-	public Integer getIdRaza(){ return idRaza; }
-
-	public void setIdRaza(Integer idRaza){this.idRaza = idRaza;}
-
 	public Integer getIdEstado(){ return idEstado; }
 
 	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
@@ -50,4 +48,11 @@ public class TipoMascota implements Serializable {
 
 	public void setNombreTipMas(String nombreTipMas){this.nombreTipMas = nombreTipMas;}
 
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 }

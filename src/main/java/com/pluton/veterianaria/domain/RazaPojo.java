@@ -6,6 +6,8 @@ public class RazaPojo {
 
 	private int idEstado;
 
+	private int idTipoMascota;
+
 	private String nombreRaz;
 
 
@@ -22,4 +24,11 @@ public class RazaPojo {
 
 	public void setNombreRaz(String nombreRaz){this.nombreRaz = nombreRaz;}
 
+	public int getIdTipoMascota() {
+		return idTipoMascota;
+	}
+
+	public void setIdTipoMascota(int idTipoMascota) {
+		this.idTipoMascota = idTipoMascota;
+	}
 }

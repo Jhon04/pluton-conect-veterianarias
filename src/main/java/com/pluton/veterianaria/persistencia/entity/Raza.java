@@ -13,6 +13,9 @@ public class Raza implements Serializable {
 	@Column(name = "id_raza")
 	private Integer idRaza;
 
+	@Column(name = "id_tipo_mascota")
+	private Integer idTipoMascota;
+
 	@Column(name = "id_estado")
 	private Integer idEstado;
 
@@ -25,6 +28,10 @@ public class Raza implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
+	private TipoMascota tipo_mascota;
 
 	public Raza() {}
 	public Integer getIdRaza(){ return idRaza; }
@@ -39,4 +46,27 @@ public class Raza implements Serializable {
 
 	public void setNombreRaz(String nombreRaz){this.nombreRaz = nombreRaz;}
 
+	public Integer getIdTipoMascota() {
+		return idTipoMascota;
+	}
+
+	public void setIdTipoMascota(Integer idTipoMascota) {
+		this.idTipoMascota = idTipoMascota;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public TipoMascota getTipo_mascota() {
+		return tipo_mascota;
+	}
+
+	public void setTipo_mascota(TipoMascota tipo_mascota) {
+		this.tipo_mascota = tipo_mascota;
+	}
 }

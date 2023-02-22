@@ -13,22 +13,28 @@ public class Mascota implements Serializable {
 	@Column(name = "id_mascota")
 	private Integer idMascota;
 
-	@Column(name = "id_tipo_mascota")
-	private Integer idTipoMascota;
+	@Column(name = "id_raza")
+	private Integer idRaza;
 
 	@Column(name = "id_estado")
 	private Integer idEstado;
 
 	@Column(name = "nombre_mas")
-	private Integer nombreMas;
+	private String nombreMas;
 
+	@Column(name = "edad_mas")
+	private Integer edadMas;
 
-	//Use cualquiera de las relaciones @ManyToOne or @OneToMany or OneToOne
-	@JoinColumn(name = "id_tipo_mascota", insertable = false, updatable = false)
-	private TipoMascota tipo_mascota;
+	@Column(name = "peso_mas")
+	private Double pesoMas;
 
-	// (Many) Un estado lo puede tener muchos clientes
-	// (One) UnCliente solo puede tener un estado
+	@Column(name = "size_mas")
+	private Double sizeMas;
+
+	@ManyToOne
+	@JoinColumn(name = "id_raza", insertable = false, updatable = false)
+	private Raza raza;
+
 	@ManyToOne
 	@JoinColumn(name = "id_estado", insertable = false, updatable = false)
 	private Estado estado;
@@ -38,16 +44,55 @@ public class Mascota implements Serializable {
 
 	public void setIdMascota(Integer idMascota){this.idMascota = idMascota;}
 
-	public Integer getIdTipoMascota(){ return idTipoMascota; }
+	public Integer getIdRaza() {
+		return idRaza;
+	}
 
-	public void setIdTipoMascota(Integer idTipoMascota){this.idTipoMascota = idTipoMascota;}
+	public void setIdRaza(Integer idRaza) {
+		this.idRaza = idRaza;
+	}
+
+	public Raza getRaza() {
+		return raza;
+	}
+
+	public void setRaza(Raza raza) {
+		this.raza = raza;
+	}
 
 	public Integer getIdEstado(){ return idEstado; }
 
 	public void setIdEstado(Integer idEstado){this.idEstado = idEstado;}
 
-	public Integer getNombreMas(){ return nombreMas; }
+	public String getNombreMas(){ return nombreMas; }
 
-	public void setNombreMas(Integer nombreMas){this.nombreMas = nombreMas;}
+	public void setNombreMas(String nombreMas){this.nombreMas = nombreMas;}
 
+	public Integer getEdadMas(){ return edadMas; }
+
+	public void setEdadMas(Integer edadMas){this.edadMas = edadMas;}
+
+	public Double getPesoMas() {
+		return pesoMas;
+	}
+
+	public void setPesoMas(Double pesoMas) {
+		this.pesoMas = pesoMas;
+	}
+
+	public Double getSizeMas() {
+		return sizeMas;
+	}
+
+	public void setSizeMas(Double sizeMas) {
+		this.sizeMas = sizeMas;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
 }

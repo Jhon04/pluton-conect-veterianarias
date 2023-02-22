@@ -15,12 +15,17 @@ public interface RazaMapper {
 
 	@Mappings({
 		@Mapping(source = "idRaza", target = "idRaza"),
+		@Mapping(source = "idTipoMascota", target = "idTipoMascota"),
 		@Mapping(source = "idEstado", target = "idEstado"),
 		@Mapping(source = "nombreRaz", target = "nombreRaz"),
 	})
 	RazaPojo toRazaPojo(Raza raza);
 	List<RazaPojo> toListRazaPojo(List<Raza> listraza);
 	@InheritInverseConfiguration
+	@Mappings({
+			@Mapping(target = "estado", ignore = true),
+			@Mapping(target = "tipo_mascota", ignore = true)
+	})
 	Raza toRaza(RazaPojo razapojo);
 	List<Raza> toListRaza(List<RazaPojo> listrazapojo);
 
