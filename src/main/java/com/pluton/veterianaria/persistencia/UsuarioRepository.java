@@ -15,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +72,7 @@ public class UsuarioRepository implements UsuarioRepositoryDomain {
 
 	@Override
 	public void updateFechaFinUsu(UsuarioPojo usuarioPojo) {
+		System.out.println(usuarioPojo.getFechFinUsu());
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 

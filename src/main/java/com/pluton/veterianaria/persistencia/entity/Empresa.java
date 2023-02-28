@@ -148,7 +148,9 @@ public class Empresa implements Serializable {
 
 	public Date getFechaMod(){ return fechaMod; }
 
-	public void setFechaMod(Date fechaMod){this.fechaMod = fechaMod;}
+	public void setFechaMod(Date fechaMod){
+		this.fechaMod = fechaMod;
+	}
 
 	public Integer getUserMod(){ return userMod; }
 

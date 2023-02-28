@@ -10,13 +10,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class PlutonUserDetailsService implements UserDetailsService {
@@ -37,22 +38,17 @@ public class PlutonUserDetailsService implements UserDetailsService {
 
         if(user != null){
 
+            // Configurar la hora, zona horaria, ver el porque te suma 1 dias 5 horas a cualquier fecha que le pongas
+            // setear la fecha final de la cookie
+            Date fechaActual = new Date();
 
-                // Actualizar las propiedades del usuario
-                Date fechaActual = new Date();
-                // Convertir la fecha actual a un objeto LocalDateTime
-                Instant instant = fechaActual.toInstant();
-                LocalDateTime fechaActualLocalDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-                // Sumar 15 minutos a la fecha actual
-                LocalDateTime fechaCon15MinutosMas = fechaActualLocalDateTime.plusMinutes(15);
-                // Convertir la fecha actualizada a un objeto Date
-                Instant instantActualizado = fechaCon15MinutosMas.atZone(ZoneId.systemDefault()).toInstant();
-                Date fechaActualizada = Date.from(instantActualizado);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(fechaActual);
+            cal.add(Calendar.MINUTE, 15);
+            Date fechaRestada = cal.getTime();
 
-                // Guardar los cambios en la base de datos
-                user.setFechFinUsu(fechaActualizada);
-                usuarioService.updateFechaFinUsu(user);
-
+            user.setFechFinUsu(fechaRestada);
+            usuarioService.updateFechaFinUsu(user);
 
             return new User(user.getEmailUsu(), user.getPasswordUsu(), new ArrayList<>());
         }
