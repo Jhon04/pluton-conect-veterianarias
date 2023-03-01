@@ -22,6 +22,7 @@ public interface ClienteMapper {
 		@Mapping(source = "nombreCli", target = "nombreCli"),
 		@Mapping(source = "apePaternoCli", target = "apePaternoCli"),
 		@Mapping(source = "apeMaternoCli", target = "apeMaternoCli"),
+		@Mapping(source = "dniCli", target = "dniCli"),
 		@Mapping(source = "ubicacionCli", target = "ubicacionCli"),
 		@Mapping(source = "emailCli", target = "emailCli"),
 		@Mapping(source = "celularCli", target = "celularCli"),

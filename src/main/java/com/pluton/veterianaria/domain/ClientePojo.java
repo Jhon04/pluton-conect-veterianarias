@@ -1,5 +1,6 @@
 package com.pluton.veterianaria.domain;
 
+import javax.persistence.Column;
 import java.util.Date;
 public class ClientePojo {
 
@@ -16,6 +17,8 @@ public class ClientePojo {
 	private String apePaternoCli;
 
 	private String apeMaternoCli;
+
+	private String dniCli;
 
 	private String ubicacionCli;
 
@@ -95,4 +98,11 @@ public class ClientePojo {
 
 	public void setIdEstado(int idEstado){this.idEstado = idEstado;}
 
+	public String getDniCli() {
+		return dniCli;
+	}
+
+	public void setDniCli(String dniCli) {
+		this.dniCli = dniCli;
+	}
 }

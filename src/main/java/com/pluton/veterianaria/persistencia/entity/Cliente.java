@@ -32,6 +32,9 @@ public class Cliente implements Serializable {
 	@Column(name = "ape_materno_cli")
 	private String apeMaternoCli;
 
+	@Column(name = "dni_cli")
+	private String dniCli;
+
 	@Column(name = "ubicacion_cli")
 	private String ubicacionCli;
 
@@ -158,5 +161,13 @@ public class Cliente implements Serializable {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public String getDniCli() {
+		return dniCli;
+	}
+
+	public void setDniCli(String dniCli) {
+		this.dniCli = dniCli;
 	}
 }
