@@ -29,8 +29,8 @@ INSERT INTO EMPRESA ( 	id_usuario, id_distrito, id_estado, ruc_emp, nombre_emp, 
     '2023-01-20 03:11:36', 
     1);
 
-INSERT INTO CLIENTE ( id_usuario, id_distrito, id_estado, direccion_cli, nombre_cli, ape_paterno_cli, ape_materno_cli, ubicacion_cli, email_cli, celular_cli, img_cli, img_back_cli, fecha_mod, user_mod) 
-	VALUES(1,1, 1,'AV.SIMPRE VIVA 506', 'JUAN', 'PEREZ', 'SOZA', 'X:4568455485,Y:245456215425452', 'jpaz@gmail.com', 987654321, 'http:/img01.jpg', 'http:/img02.jpg', '2023-01-20 03:11:36', 1);
+INSERT INTO CLIENTE ( id_usuario, id_distrito, id_estado, direccion_cli, nombre_cli, ape_paterno_cli, ape_materno_cli, dni_cli, ubicacion_cli, email_cli, celular_cli, img_cli, img_back_cli, fecha_mod, user_mod)
+	VALUES(1,1, 1,'AV.SIMPRE VIVA 506', 'JHON', 'CHUGNAS', 'MOSQUEIRA', '74573306','X:4568455485,Y:245456215425452', 'chugnasivan@gmail.com', 987654321, 'http:/img01.jpg', 'http:/img02.jpg', '2023-01-20 03:11:36', 1);
     
 SELECT * FROM EMPRESA;
 SELECT * FROM CLIENTE;
