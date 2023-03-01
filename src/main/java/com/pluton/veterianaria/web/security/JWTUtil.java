@@ -14,26 +14,28 @@ public class JWTUtil {
     public static byte[] keyBytes = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
 
     public String generateToken(UserDetails userDetails) {
-        /*
+        // 10 horas
         return Jwts.builder().setSubject(userDetails.getUsername()).setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() +1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, KEY).compact();
-        */
+                .signWith(SignatureAlgorithm.HS256, keyBytes).compact();
+
 
         /* 15 minutos
         return Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15))
-                .signWith(SignatureAlgorithm.HS256, KEY).compact();
+                .signWith(SignatureAlgorithm.HS256, keyBytes).compact();
          */
 
         // 30 Segundos
+        /*
         return Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 30))
                 //.signWith(SignatureAlgorithm.HS256, KEY).compact();
                 .signWith(Keys.hmacShaKeyFor(keyBytes), SignatureAlgorithm.HS256)
                 .compact();
+         */
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
